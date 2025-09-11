@@ -6,7 +6,7 @@ In light of these unknowns, we propose a benchmark of the popular VQC training m
 <img width="956" height="236" alt="Screenshot 2025-09-09 211555" src="https://github.com/user-attachments/assets/f078971d-a8e6-4389-8641-5e8afef08b62" />
 
 
-# Related Works
+# Related Works 
 
 Some work has been done on this in the past by the current authors. Specifically, the authors would like to implement the QRNN model described in Reference 1 as a trainable PyTorch layer. This QRNN model was tested and run on real quantum hardware, and demonstrates the necessary components for a recurrent neural network (RNN). The SPSA algorithm is described in Reference 2 and gives details on how to implement it for arbitrary optimization problems. Lastly, the parameter-shift method for QC gradient calculation is described in Reference 3 and describes this method in great detail.
 
@@ -14,7 +14,11 @@ Some work has been done on this in the past by the current authors. Specifically
 Generally, the SPSA algorithm is assumed to be the best algorithm for VQC optimization, as it requires only $$O(n)$$ circuit evaluations to compute a gradient, where $$n$$ is the number of optimization steps. In contrast, the parameter-shift method requires $$O(pn)$$, where $$p$$ is the number of parameters in the VQC. As the number of parameters increases, the runtime of the parameter-shift method will increase, while the evaluations required by the SPSA algorithm will remain the same. This sort of runtime efficiency is very useful when the cost of both simulating and deploying VQCs onto quantum hardware remains high. However, it is known that training recurrent neural networks (RNNs) can be difficult (Reference 4), and it is not known whether these approximate methods such as SPSA hold up in a hybrid classical-quantum model with a recurrent quantum component. Knowing this, we believe there may be significant differences between the approximate and exact method, with the higher asymptotic runtime of the parameter-shift method possibly offering unforeseen improvements in optimization steps required and loss. This would run counter to conventional VQC training best practices and offer insight on how to train a QRNN.
 
 # Goals
-
+1. The first step of this project is building the pytorch NN layer, this will play a significant role in the evaluation of the project and is a necessary step that contributes to the furthering of quantum technology.
+2. Integrate and evaluate SPSA optimization. measure for elements like compute, cost, and effeciency
+3. Integrate and evaluate Parameter-shift gradient. Compare to SPSA
+4. Benchmark and compare optimization techniques
+5. Determine which technique is best for hybrid models. 
 
 # References 
 1. Connerty, E.L., Evans, E.N., Angelatos, G., Narayanan, V. (2025). Quantum Observers: A NISQ Hardware Demonstration of Chaotic State Prediction Using Quantum Echo-state Networks. arXiv preprint arXiv:2505.06799.

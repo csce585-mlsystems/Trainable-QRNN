@@ -1,3 +1,18 @@
+#Group Info 
+ERIKC@cec.sc.edu
+mcs46@email.sc.edu
+
+#Project Summary 
+
+#Problem Description 
+
+#Contribution
+
+#Directory Structure
+
+#Demo 
+
+##[Extension of Existing Work]
 # Introduction
 Quantum Neural Networks (QNNs) remain a promising topic of interest in the field of Machine Learning (ML). With the advent of new simulation tools, it is now possible to run utility scale simulations of Quantum Circuits (QCs). In particular, the class of QCs known as Variational Quantum Circuits (VQCs) are of great interest to the Quantum Machine Learning (QML) community, and offer quantum analogue to the classical Neural Network (NN). With that said, the different types of hybrid classical-quantum models that can be feasibly constructed and trained remains largely unexplored. In addition, the difficulties associated with training these models on both classical computers and Quantum Processing Units (QPUs) warrants further investigation, as the cost currently associated with running on quantum hardware is very high.
 

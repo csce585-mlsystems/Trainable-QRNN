@@ -44,3 +44,53 @@ We build upon prior work in QRNNs (Reference 1) and VQC optimization methods to 
 2. Spall, J.C. (1998). AN OVERVIEW OF THE SIMULTANEOUS PERTURBATION METHOD FOR EFFICIENT OPTIMIZATION. Johns Hopkins Apl Technical Digest, 19, 482-492.
 3. Mitarai, K., Negoro, M., Kitagawa, M., & Fujii, K. (2018). Quantum circuit learning. Physical Review. A/Physical Review, A, 98(3). https://doi.org/10.1103/physreva.98.032309
 4. Pascanu, R., Mikolov, T., Bengio, Y. (2012). On the difficulty of training Recurrent Neural Networks. arXiv preprint arXiv:1211.5063.
+
+# < The following is only applicable for the final project submission >  
+
+## Dependencies  
+### Include all dependencies required to run the project. Example:  
+- Python 3.11  
+- Ubuntu 22.04  
+
+For Python users: Please use [uv](https://docs.astral.sh/uv/) as your package manager instead of `pip`. Your repo must include both the `uv.lock` and `pyproject.toml` files.  
+
+## Directory Structure  
+Example:  
+```
+|- data (mandatory)
+|- src (mandatory)
+|   |- model.py
+|   |- example.py
+|- train.py
+|- run.py (mandatory)
+|- result.py (mandatory)
+```
+
+⚠️ Notes:  
+- All projects must include the `run.<ext>` script (extension depends on your programming language) at the project root directory. This is the script users will run to execute your project.  
+- If your project computes/compares metrics such as accuracy, latency, or energy, you must include the `result.<ext>` script to plot the results.  
+- Result files such as `.csv`, `.jpg`, or raw data must be saved in the `data` directory.  
+
+## How to Run  
+- Include all instructions (`commands`, `scripts`, etc.) needed to run your code.  
+- Provide all other details a computer science student would need to reproduce your results.  
+
+Example:  
+- Download the [DATASET](dataset_link)
+  ```bash
+  wget <URL_of_file>
+  ```
+
+- To train the model, run:  
+  ```bash
+  python train.py
+  ```  
+- To plot the results, run:  
+  ```bash
+  python result.py
+  ```  
+
+## Demo  
+- All projects must include video(s) demonstrating your project.  
+- Please use annotations/explanations to clarify what is happening in the demo.  
+---

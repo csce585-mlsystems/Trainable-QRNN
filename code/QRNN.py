@@ -86,7 +86,8 @@ class QRNN(nn.Module):
         x = self.input_layer(x)
  
         #x = torch.reshape(x,(self.batch_size,-1))
-        #x.flatten()
+        x = x.flatten()
+        #print(x.shape)
         quantum_out = self.quantum_layer(x)
         #print(quantum_out.shape)
         quantum_out = torch.reshape(quantum_out,(-1,int(2**(self.n_qubits//2))))

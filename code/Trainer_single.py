@@ -50,12 +50,15 @@ SHOTS = 512
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 1
-BATCH_SIZE = 2
+BATCH_SIZE = 1
 LEARNING_RATE = 0.0001
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if torch.cuda.is_available():
+    device = torch.device("cuda")
+else:
+    device = torch.device("cpu")
 print(f"Using device: {device}")
 
 try:
@@ -101,7 +104,7 @@ model = QRNN(
 #model = torch.nn.parallel.DistributedDataParallel(model)
 
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
-criterion = nn.MSELoss()
+criterion = nn.MSELoss().to(device)
 print("Model, optimizer, and loss function are ready.")
 
 # --- 4. Training Loop ---

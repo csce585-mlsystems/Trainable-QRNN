@@ -12,7 +12,7 @@ def ReuploadingBlock(qubits,mem_qubits,read_qubits,repeat_blocks,sequence_length
     def circuit(inputs,W_bias,W_hidden,W_entangle):
         #print(inputs.shape)
         
-        #inputs = torch.reshape(inputs,(-1,params_c))
+        inputs = torch.reshape(inputs,(-1,params_c))
         #print(inputs.shape)
         measurements = []
         for i in range(inputs.shape[0]):
@@ -41,7 +41,6 @@ def ReuploadingBlock(qubits,mem_qubits,read_qubits,repeat_blocks,sequence_length
         results = []
         for i in range(inputs.shape[0]):
             results.append(qml.probs(op=measurements[i]))
-
         return results
 
     return circuit

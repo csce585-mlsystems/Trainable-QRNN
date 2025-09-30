@@ -8,6 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 from QRNN import QRNN
 from tqdm import tqdm
+import time
 
 def create_sequences(data, context_length, sequence_length, time_step_shift):
 
@@ -38,7 +39,7 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 
 # --- 1. Hyperparameters ---
-N_QUBITS = 6
+N_QUBITS = 8
 REPEAT_BLOCKS = 3
 CONTEXT_LENGTH = 3
 SEQUENCE_LENGTH = 10
@@ -46,12 +47,12 @@ PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
 
-SHOTS = 512
+SHOTS = 4096
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
-EPOCHS = 1
+EPOCHS = 2
 BATCH_SIZE = 1
-LEARNING_RATE = 0.0001
+LEARNING_RATE = 0.00001
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -90,18 +91,11 @@ test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, dro
 
 # --- 3. Model, Optimizer, and Loss Function ---
 print("\n🔧 Initializing model...")
-model = QRNN(
-    n_qubits=N_QUBITS,
-    repeat_blocks=REPEAT_BLOCKS,
-    in_dim=IN_DIM,
-    out_dim=OUT_DIM,
-    context_length=CONTEXT_LENGTH,
-    sequence_length=SEQUENCE_LENGTH,
-    batch_size=BATCH_SIZE,
-    shots=SHOTS,
-).to(device)
 
-#model = torch.nn.parallel.DistributedDataParallel(model)
+model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
+             context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,
+             grad_method="finite-diff", shots=SHOTS).to(device)
+
 
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 criterion = nn.MSELoss().to(device)
@@ -117,6 +111,7 @@ for epoch in range(EPOCHS):
     
     for batch_idx, (input_seq, target_seq) in tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch+1}"):
         #print(input_seq.shape)
+        start_time = time.time()
         input_seq = input_seq.to(device)
         target_seq = target_seq.to(device)
         optimizer.zero_grad()
@@ -125,16 +120,18 @@ for epoch in range(EPOCHS):
         
         predicted_sequence = model(input_seq)
         
-        loss = criterion(predicted_sequence, target_seq[0])
+        loss = criterion(predicted_sequence[0], target_seq[0])
         loss.backward()
         optimizer.step()
         
         epoch_loss += loss.item()
-        print(np.sqrt(loss.item()))
+        #print(np.sqrt(loss.item()))
         losses.append(np.sqrt(loss.item()))
         if i % 100 == 0:
             torch.save(model.state_dict(), f'./checkpoints/QRNN_{i}.pth')
         i+=1
+        end_time = time.time()
+        print(f"Batch {i}, Loss: {loss.item():.6f}, Time: {end_time - start_time:.6f}s")
         np.save('losses.npy',losses)
         
         

@@ -30,7 +30,7 @@ class QRNN(nn.Module):
 
         # --- weights ---
         self.W_in = nn.Parameter(
-            torch.empty(n_qubits, context_length, 3).uniform_(-np.pi, np.pi)
+            torch.empty(n_qubits, in_dim*context_length, 3).uniform_(-np.pi, np.pi)
         )
         self.W_bias = nn.Parameter(torch.empty(n_qubits, 3).uniform_(-np.pi, np.pi))
         self.W_hidden = nn.Parameter(torch.empty(n_qubits // 2, 2).uniform_(-np.pi, np.pi))

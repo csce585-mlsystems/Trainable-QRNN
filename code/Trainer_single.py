@@ -47,12 +47,12 @@ PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
 
-SHOTS = 4096
+SHOTS = 1024
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 2
 BATCH_SIZE = 1
-LEARNING_RATE = 0.00001
+LEARNING_RATE = 0.001
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -128,7 +128,7 @@ for epoch in range(EPOCHS):
         #print(np.sqrt(loss.item()))
         losses.append(np.sqrt(loss.item()))
         if i % 100 == 0:
-            torch.save(model.state_dict(), f'./checkpoints/QRNN_{i}.pth')
+            torch.save(model.state_dict(), f'./checkpoints/{batch_idx}_QRNN_{i}.pth')
         i+=1
         end_time = time.time()
         print(f"Batch {i}, Loss: {loss.item():.6f}, Time: {end_time - start_time:.6f}s")

@@ -1,84 +1,71 @@
 import numpy as np
 import qiskit as qs
+from qiskit.circuit import ParameterVector
 
+def Rot(qc, phi, theta, omega, wire):
+    qc.rz(phi, wire)
+    qc.rx(theta, wire)
+    qc.rz(omega, wire)
 
-def Rot(qc, phi=0, theta=0, omega=0, wires=0):
-    qc.rz(phi, wires)
-    qc.rx(theta, wires)
-    qc.rz(omega, wires)
-
-def encode_input(W_in, x):
-    encoded = np.dot(W_in, x)
-    phi, theta, omega = encoded
-    return phi, theta, omega
-
-def ReuploadingBlock(input_data,
-                     n_qubits,
-                     context_length,
-                     repeat_blocks,
-                     W_in,
-                     W_bias,
-                     W_hidden,
-                     W_entangle,
-                     seed=0):
-    """
-    Build the full QRNN circuit with mid-circuit measurement + reset.
-    """
+def ReuploadingBlock(n_qubits, context_length, repeat_blocks, timesteps, seed=0):
     np.random.seed(seed)
-    assert n_qubits % 2 == 0, "n_qubits must be even"
-
-    q_mem = qs.circuit.QuantumRegister(n_qubits, "q")
+    assert n_qubits % 2 == 0
+    q_mem = qs.QuantumRegister(n_qubits, "q")
     qc = qs.QuantumCircuit(q_mem, name="QRNN")
-
-    # readout qubits = odd indices
     readout_idx = [i for i in range(n_qubits) if i % 2 == 1]
+    params_per_timestep = ((n_qubits*3*3)+(n_qubits//2)*2+(n_qubits-1))#4 * n_qubits + (n_qubits - 1)
+    print(f"Params per timestep: {params_per_timestep}")
+    param_vectors = []
     register_names = []
-
-    # loop over timesteps
-    for t_index in range(input_data.shape[0]):
-        # repeat block encoding
+    for t in range(timesteps):
+        pv = ParameterVector(f"x_{t}", params_per_timestep)
+        param_vectors.append(pv)
+        # qc.h(0)
+        # for i in range(0, n_qubits - 1):
+        #     qc.cx(i, i + 1)
+        # for i in range(n_qubits):
+        #     qc.h(i)
+    for t_index, pv in enumerate(param_vectors):
         for _ in range(repeat_blocks):
+            index = 0
             for k in range(0, n_qubits, 2):
-                # encode inputs into three scalars per qubit
-                input = input_data[t_index]
-                phi, theta, omega = encode_input(W_in[k], input)
-                phi2, theta2, omega2 = encode_input(W_in[k + 1], input)
-
-                bias1, bias2, bias3 = W_bias[k]
-                bias21, bias22, bias23 = W_bias[k + 1]
-
-                # first rotations
-                Rot(qc, phi + bias1, theta + bias2, omega + bias3, wires=k)
-                Rot(qc, phi2 + bias21, theta2 + bias22, omega2 + bias23, wires=k + 1)
-
+                phi = pv[index]
+                theta = pv[index + 1]
+                omega = pv[index + 2]
+                phi2 = pv[index + 3]
+                theta2 = pv[index + 4]
+                omega2 = pv[index + 5]
+                Rot(qc, phi, theta, omega, k)
+                Rot(qc, phi2, theta2, omega2, k + 1)
                 qc.cx(k, k + 1)
-
-                # second rotations
-                Rot(qc, phi + bias1, theta + bias2, omega + bias3, wires=k)
-                Rot(qc, phi2 + bias21, theta2 + bias22, omega2 + bias23, wires=k + 1)
-
-                qc.cry(W_hidden[k // 2, 0], k, k + 1)
-
-                # third rotations
-                Rot(qc, phi + bias1, theta + bias2, omega + bias3, wires=k)
-                Rot(qc, phi2 + bias21, theta2 + bias22, omega2 + bias23, wires=k + 1)
-
-                qc.crx(W_hidden[k // 2, 1], k, k + 1)
-
-            # entangling layer
-            for k in range(0, n_qubits, 2):
-                qc.crz(W_entangle[k // 2], k, (k + 2) % n_qubits)
-
-        # classical register for this timestep
+                phi = pv[index + 6]
+                theta = pv[index + 7]
+                omega = pv[index + 8]
+                phi2 = pv[index + 9]
+                theta2 = pv[index + 10]
+                omega2 = pv[index + 11]
+                Rot(qc, phi, theta, omega, k)
+                Rot(qc, phi2, theta2, omega2, k + 1)
+                qc.cry(pv[index + 12], k, k + 1)
+                phi = pv[index + 13]
+                theta = pv[index + 14]
+                omega = pv[index + 15]
+                phi2 = pv[index + 16]
+                theta2 = pv[index + 17]
+                omega2 = pv[index + 18]
+                Rot(qc, phi, theta, omega, k)
+                Rot(qc, phi2, theta2, omega2, k + 1)
+                qc.crx(pv[index + 19], k, k + 1)
+                index += 20
+            for k in range(0, n_qubits-1):
+                qc.crz(pv[index], k, (k + 1) % n_qubits)
+                index += 1
         qc.barrier()
         reg_name = f"cr_{t_index}"
         register_names.append(reg_name)
-        c_reg = qs.circuit.ClassicalRegister(n_qubits // 2, reg_name)
+        c_reg = qs.circuit.ClassicalRegister(len(readout_idx), reg_name)
         qc.add_register(c_reg)
-
-        # mid-circuit measure + reset
         qc.measure(readout_idx, c_reg)
         qc.reset(readout_idx)
         qc.barrier()
-
-    return qc, register_names
+    return qc, param_vectors, register_names

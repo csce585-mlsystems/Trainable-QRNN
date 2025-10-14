@@ -40,9 +40,9 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 # --- 1. Hyperparameters ---
 N_QUBITS = 8
-REPEAT_BLOCKS = 3
+REPEAT_BLOCKS = 1
 CONTEXT_LENGTH = 3
-SEQUENCE_LENGTH = 10
+SEQUENCE_LENGTH = 5
 PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
@@ -50,9 +50,9 @@ OUT_DIM = 2
 SHOTS = 1024
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
-EPOCHS = 2
+EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = 0.001
+LEARNING_RATE = .0005
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -79,12 +79,18 @@ split_index = int(len(X) * TRAIN_TEST_SPLIT_RATIO)
 X_train, X_test = X[:split_index], X[split_index:]
 y_train, y_test = y[:split_index], y[split_index:]
 
+#Subsample the train data set getting every other sequence
+X_train = X_train[::3]
+y_train = y_train[::3]
+
 print(f"Training set size: {len(X_train)} sequences")
 print(f"Test set size: {len(X_test)} sequences")
 
 # --- Create DataLoaders for both sets ---
 train_dataset = TensorDataset(X_train, y_train)
 test_dataset = TensorDataset(X_test, y_test)
+
+
 
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
 test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, drop_last=True) # No shuffle for test set
@@ -94,11 +100,12 @@ print("\n🔧 Initializing model...")
 
 model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
              context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,
-             grad_method="finite-diff", shots=SHOTS).to(device)
+             grad_method="spsa", shots=SHOTS).to(device)
 
 
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 criterion = nn.MSELoss().to(device)
+
 print("Model, optimizer, and loss function are ready.")
 
 # --- 4. Training Loop ---
@@ -108,58 +115,54 @@ for epoch in range(EPOCHS):
     model.train()
     epoch_loss = 0.0
     i = 1
+    loss_batch = []
     
     for batch_idx, (input_seq, target_seq) in tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch+1}"):
-        #print(input_seq.shape)
         start_time = time.time()
         input_seq = input_seq.to(device)
         target_seq = target_seq.to(device)
         optimizer.zero_grad()
-        
-        #model_input = context_batch#context_batch.view(context_batch.size(0), -1)
-        
-        predicted_sequence = model(input_seq)
-        
-        loss = criterion(predicted_sequence[0], target_seq[0])
+
+        predicted_sequence, quantum_probs = model(input_seq)   # (batch, seq_len, out_dim)
+        # print(quantum_probs)
+        loss = criterion(predicted_sequence[:, 1:, :], target_seq[:, 1:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
+
+        # -----------------------------------------------
+        # before step
+        # param_ids_before = {n: id(p) for n,p in model.named_parameters()}
+        # param_vals_before = {n: p.detach().cpu().clone() for n,p in model.named_parameters()}
+
+
+        # after step
+        # for n,p in model.named_parameters():
+        #     print(n, "id-before", param_ids_before[n], "id-after", id(p))
+        #     print("norm before", param_vals_before[n].norm().item(), "after", p.detach().cpu().norm().item())
+        # for n,p in model.named_parameters():
+        #     print(n, p.grad is None, torch.norm(p.grad) if p.grad is not None else None)
+
+        epoch_loss += np.sqrt(loss.item())
+        #losses.append(np.sqrt(loss.item()))
         
-        epoch_loss += loss.item()
-        #print(np.sqrt(loss.item()))
-        losses.append(np.sqrt(loss.item()))
-        if i % 100 == 0:
-            torch.save(model.state_dict(), f'./checkpoints/{batch_idx}_QRNN_{i}.pth')
-        i+=1
+        if i % 1000 == 0:
+            torch.save(model.state_dict(), f'./checkpoints/{epoch+1}_QRNN_{i}.pth')
+        
+        
         end_time = time.time()
-        print(f"Batch {i}, Loss: {loss.item():.6f}, Time: {end_time - start_time:.6f}s")
-        np.save('losses.npy',losses)
-        
+        #print(f"Iteration {i}, Loss (RMSE): {np.sqrt(loss.item()):.6f}, Time: {end_time - start_time:.6f}s")
+        loss_batch.append(np.sqrt(loss.item()))
+        if i % 50 == 0:
+            avg_loss = np.array(loss_batch).mean()
+            losses.append(avg_loss)
+            loss_batch = []
+            print(f"Epoch {epoch+1}--- Average Loss over last 50 data points: {avg_loss:.6f} ---")
+            np.save('losses.npy', losses)
+        i += 1
         
     avg_epoch_loss = epoch_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.6f}")
 
-
 print("\n✅ Training complete!")
 
-# # --- 5. ✨ NEW: Evaluation on Test Set ---
-# print("\n🧪 Evaluating model on the test set...")
-# model.eval()
-# test_loss = 0.0
 
-# # Ensure there is data in the test loader
-# if len(test_loader) > 0:
-#     with torch.no_grad():
-#         for context_batch, target_seq_batch in test_loader:
-#             context_batch = context_batch.to(device)
-#             target_seq_batch = target_seq_batch.to(device)
-            
-#             model_input = context_batch.view(context_batch.size(0), -1)
-#             predicted_sequence = model(model_input)
-            
-#             loss = criterion(predicted_sequence, target_seq_batch)
-#             test_loss += loss.item()
-
-#     avg_test_loss = test_loss / len(test_loader)
-#     print(f"\n📈 Average Test Loss: {avg_test_loss:.6f}")
-# else:
-#     print("No data in the test loader to evaluate.")

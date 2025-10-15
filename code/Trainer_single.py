@@ -6,7 +6,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
-from QRNN import QRNN
+from QRNN_new import QRNN
 from tqdm import tqdm
 import time
 
@@ -40,7 +40,7 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 # --- 1. Hyperparameters ---
 N_QUBITS = 8
-REPEAT_BLOCKS = 1
+REPEAT_BLOCKS = 3
 CONTEXT_LENGTH = 3
 SEQUENCE_LENGTH = 5
 PREDICTION_HORIZON = 1
@@ -52,7 +52,7 @@ TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = .0005
+LEARNING_RATE = .001
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -124,7 +124,7 @@ for epoch in range(EPOCHS):
         optimizer.zero_grad()
 
         predicted_sequence, quantum_probs = model(input_seq)   # (batch, seq_len, out_dim)
-        # print(quantum_probs)
+        #print(quantum_probs)
         loss = criterion(predicted_sequence[:, 1:, :], target_seq[:, 1:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
@@ -151,7 +151,9 @@ for epoch in range(EPOCHS):
         
         end_time = time.time()
         #print(f"Iteration {i}, Loss (RMSE): {np.sqrt(loss.item()):.6f}, Time: {end_time - start_time:.6f}s")
-        loss_batch.append(np.sqrt(loss.item()))
+        rmse = np.sqrt(loss.item())
+        #print(f"Iteration {i}, Loss (RMSE): {rmse:.6f}")
+        loss_batch.append(rmse)
         if i % 50 == 0:
             avg_loss = np.array(loss_batch).mean()
             losses.append(avg_loss)

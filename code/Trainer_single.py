@@ -40,12 +40,15 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 # --- 1. Hyperparameters ---
 N_QUBITS = 8
-REPEAT_BLOCKS = 3
+REPEAT_BLOCKS = 1
 CONTEXT_LENGTH = 3
 SEQUENCE_LENGTH = 5
 PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
+SPSA_SAMPLES = 4
+SPSA_EPS = .05
+SEED = np.random.randint(1,10000)
 
 SHOTS = 1024
 TRAIN_TEST_SPLIT_RATIO = 0.7
@@ -100,7 +103,7 @@ print("\n🔧 Initializing model...")
 
 model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
              context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,
-             grad_method="spsa", shots=SHOTS).to(device)
+             grad_method="spsa", shots=SHOTS, seed=SEED, spsa_samples=SPSA_SAMPLES, epsilon=SPSA_EPS).to(device)
 
 
 optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)

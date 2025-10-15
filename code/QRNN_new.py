@@ -5,13 +5,13 @@ from qiskit_aer import AerSimulator
 from qiskit import transpile
 
 from ReuploadingBlock import ReuploadingBlock
-from quantum_layerv2 import QuantumLayer
+from quantum_layerv3 import QuantumLayer
 
 
 class QRNN(nn.Module):
     def __init__(self, n_qubits, repeat_blocks, in_dim, out_dim,
                  context_length, sequence_length, batch_size,
-                 shots=4096, seed=0, grad_method="finite-diff"):
+                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2):
         super(QRNN, self).__init__()
 
         self.n_qubits = n_qubits
@@ -24,6 +24,8 @@ class QRNN(nn.Module):
         self.shots = shots
         self.seed = seed
         self.grad_method = grad_method
+        self.spsa_samples = spsa_samples
+        self.eps = epsilon
 
         assert n_qubits % 2 == 0, "n_qubits must be even"
         self.n_readout = n_qubits // 2
@@ -98,7 +100,7 @@ class QRNN(nn.Module):
         x_flat = x.reshape(batch * time, -1)
         encoded = self.input_layer(x_flat)
         encoded = encoded.view(batch, time, -1)
-        out = QuantumLayer.apply(self, encoded, self.grad_method)
+        out = QuantumLayer.apply(self, encoded, self.grad_method,self.eps,self.spsa_samples)
         return self.output_layer(out), out
 
     def _get_param(self, fullname):

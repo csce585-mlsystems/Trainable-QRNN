@@ -13,7 +13,7 @@ def ReuploadingBlock(n_qubits, context_length, repeat_blocks, timesteps, seed=0)
     q_mem = qs.QuantumRegister(n_qubits, "q")
     qc = qs.QuantumCircuit(q_mem, name="QRNN")
     readout_idx = [i for i in range(n_qubits) if i % 2 == 1]
-    params_per_timestep = ((n_qubits*3*3)+(n_qubits//2)*2+(n_qubits-1))#4 * n_qubits + (n_qubits - 1)
+    params_per_timestep = ((n_qubits*3*3)+(n_qubits//2)*2+(n_qubits-1))
     print(f"Params per timestep: {params_per_timestep}")
     param_vectors = []
     register_names = []

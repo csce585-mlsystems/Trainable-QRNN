@@ -4,14 +4,14 @@ import numpy as np
 from qiskit_aer import AerSimulator
 from qiskit import transpile
 
-from ReuploadingBlock import ReuploadingBlock
-from quantum_layer import QuantumLayer
+from SimpleBlock import SimpleBlock
+from quantum_layerv3 import QuantumLayer
 
 
 class QRNN(nn.Module):
     def __init__(self, n_qubits, repeat_blocks, in_dim, out_dim,
                  context_length, sequence_length, batch_size,
-                 shots=4096, seed=0, grad_method="finite-diff"):
+                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2):
         super(QRNN, self).__init__()
 
         self.n_qubits = n_qubits
@@ -24,11 +24,13 @@ class QRNN(nn.Module):
         self.shots = shots
         self.seed = seed
         self.grad_method = grad_method
+        self.spsa_samples = spsa_samples
+        self.eps = epsilon
 
         assert n_qubits % 2 == 0, "n_qubits must be even"
         self.n_readout = n_qubits // 2
 
-        self.qc, self.param_vectors, self.register_names = ReuploadingBlock(
+        self.qc, self.param_vectors, self.register_names = SimpleBlock(
             self.n_qubits,
             self.context_length,
             self.repeat_blocks,
@@ -39,22 +41,16 @@ class QRNN(nn.Module):
         self.params_c = len(self.param_vectors[0])
 
         self.input_layer = nn.Linear(in_dim * context_length, self.params_c)
-        # nn.init.uniform_(self.input_layer.weight, -np.pi / 2, np.pi / 2)
-        # nn.init.uniform_(self.input_layer.bias, -np.pi / 4, np.pi / 4)
-        scale = np.pi / 8  # ~0.39 rad
+        CONSTANT = (context_length*(repeat_blocks)*np.ceil(in_dim))
+        scale = np.pi / CONSTANT  # ~0.39 rad
         nn.init.uniform_(self.input_layer.weight, -scale, scale)
-        nn.init.uniform_(self.input_layer.bias, -scale/2, scale/2)
-
+        nn.init.uniform_(self.input_layer.bias, -np.pi/(2*repeat_blocks), scale/(2*repeat_blocks))
 
         self.output_layer = nn.Linear(2**self.n_readout, out_dim)
         fan_in = 2 ** self.n_readout
-        limit = np.sqrt(6 / fan_in) * 4.0   # smaller gain
+        limit = np.sqrt(6 / fan_in) * 2.0   # smaller gain
         nn.init.uniform_(self.output_layer.weight, -limit, limit)
-
-        
         nn.init.constant_(self.output_layer.bias, 0.5)
-        # nn.init.uniform_(self.output_layer.weight, 0, 1)
-        # nn.init.uniform_(self.output_layer.bias, 0, 0.25)
 
         self.sim = AerSimulator()
         self.compiled = transpile(self.qc, self.sim)
@@ -105,7 +101,7 @@ class QRNN(nn.Module):
         x_flat = x.reshape(batch * time, -1)
         encoded = self.input_layer(x_flat)
         encoded = encoded.view(batch, time, -1)
-        out = QuantumLayer.apply(self, encoded, self.grad_method)
+        out = QuantumLayer.apply(self, encoded, self.grad_method,self.eps,self.spsa_samples)
         return self.output_layer(out), out
 
     def _get_param(self, fullname):

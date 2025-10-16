@@ -6,7 +6,7 @@ from torch.utils.data import TensorDataset, DataLoader
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
-from QRNN_new import QRNN
+from QRNN import QRNN
 from tqdm import tqdm
 import time
 
@@ -42,11 +42,11 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 N_QUBITS = 8
 REPEAT_BLOCKS = 1
 CONTEXT_LENGTH = 3
-SEQUENCE_LENGTH = 5
+SEQUENCE_LENGTH = 20
 PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
-SPSA_SAMPLES = 4
+SPSA_SAMPLES = 2
 SPSA_EPS = .05
 SEED = np.random.randint(1,10000)
 
@@ -55,7 +55,7 @@ TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = .001
+LEARNING_RATE = .005
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -83,8 +83,8 @@ X_train, X_test = X[:split_index], X[split_index:]
 y_train, y_test = y[:split_index], y[split_index:]
 
 #Subsample the train data set getting every other sequence
-X_train = X_train[::3]
-y_train = y_train[::3]
+X_train = X_train[::10]
+y_train = y_train[::10]
 
 print(f"Training set size: {len(X_train)} sequences")
 print(f"Test set size: {len(X_test)} sequences")
@@ -128,7 +128,7 @@ for epoch in range(EPOCHS):
 
         predicted_sequence, quantum_probs = model(input_seq)   # (batch, seq_len, out_dim)
         #print(quantum_probs)
-        loss = criterion(predicted_sequence[:, 1:, :], target_seq[:, 1:, :]) #Ignore first timestep
+        loss = criterion(predicted_sequence[:, 5:, :], target_seq[:, 5:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
 
@@ -148,7 +148,7 @@ for epoch in range(EPOCHS):
         epoch_loss += np.sqrt(loss.item())
         #losses.append(np.sqrt(loss.item()))
         
-        if i % 1000 == 0:
+        if i % 100 == 0:
             torch.save(model.state_dict(), f'./checkpoints/{epoch+1}_QRNN_{i}.pth')
         
         
@@ -157,11 +157,11 @@ for epoch in range(EPOCHS):
         rmse = np.sqrt(loss.item())
         #print(f"Iteration {i}, Loss (RMSE): {rmse:.6f}")
         loss_batch.append(rmse)
-        if i % 50 == 0:
+        if i % 10 == 0:
             avg_loss = np.array(loss_batch).mean()
             losses.append(avg_loss)
             loss_batch = []
-            print(f"Epoch {epoch+1}--- Average Loss over last 50 data points: {avg_loss:.6f} ---")
+            print(f"Epoch {epoch+1}--- Average Loss over last 10 data points: {avg_loss:.6f} ---")
             np.save('losses.npy', losses)
         i += 1
         

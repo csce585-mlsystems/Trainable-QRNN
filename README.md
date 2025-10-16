@@ -45,12 +45,24 @@ We build upon prior work in QRNNs (Reference 1) and VQC optimization methods to 
 3. Mitarai, K., Negoro, M., Kitagawa, M., & Fujii, K. (2018). Quantum circuit learning. Physical Review. A/Physical Review, A, 98(3). https://doi.org/10.1103/physreva.98.032309
 4. Pascanu, R., Mikolov, T., Bengio, Y. (2012). On the difficulty of training Recurrent Neural Networks. arXiv preprint arXiv:1211.5063.
 
+
+# Reproducing Code for Milestone P1
+1. Install the required packages with ```uv sync'''
+2. Change to code directory ```cd code'''
+2. Run "uv run python Trainer_single.py -V" in the code folder for at least one epoch.
+3. Visualize the losses with "visual.ipynb".
+4. Evaluate the model on the test dataset using "eval.ipynb". Make sure to set the filename to the name of the final model checkpoint from the "checkpoints" folder.
+
 # < The following is only applicable for the final project submission >  
 
 ## Dependencies  
 ### Include all dependencies required to run the project. Example:  
 - Python 3.11  
-- Ubuntu 22.04  
+- Torch
+- Qiskit
+- Qiskit Aer
+- Matplotlib
+- Numpy 
 
 For Python users: Please use [uv](https://docs.astral.sh/uv/) as your package manager instead of `pip`. Your repo must include both the `uv.lock` and `pyproject.toml` files.  
 

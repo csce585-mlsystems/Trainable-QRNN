@@ -5,13 +5,13 @@ from qiskit_aer import AerSimulator
 from qiskit import transpile
 
 from SimpleBlock import SimpleBlock
-from quantum_layerv3 import QuantumLayer
+from quantum_layerv4 import QuantumLayer
 
 
 class QRNN(nn.Module):
     def __init__(self, n_qubits, repeat_blocks, in_dim, out_dim,
                  context_length, sequence_length, batch_size,
-                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2):
+                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2,gpu=True):
         super(QRNN, self).__init__()
 
         self.n_qubits = n_qubits
@@ -26,6 +26,7 @@ class QRNN(nn.Module):
         self.grad_method = grad_method
         self.spsa_samples = spsa_samples
         self.eps = epsilon
+        self.gpu = gpu
 
         assert n_qubits % 2 == 0, "n_qubits must be even"
         self.n_readout = n_qubits // 2
@@ -52,7 +53,10 @@ class QRNN(nn.Module):
         nn.init.uniform_(self.output_layer.weight, -limit, limit)
         nn.init.constant_(self.output_layer.bias, 0.5)
 
-        self.sim = AerSimulator()
+        if self.gpu:
+            self.sim = AerSimulator(device='GPU', batched_shots_gpu=True,runtime_parameter_bind_enable=True)
+        else:
+            self.sim = AerSimulator()
         self.compiled = transpile(self.qc, self.sim)
 
         self._backup_params = {}

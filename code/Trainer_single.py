@@ -46,8 +46,10 @@ SEQUENCE_LENGTH = 20
 PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
-SPSA_SAMPLES = 2
-SPSA_EPS = .05
+SPSA_SAMPLES = 4
+SPSA_EPS = .1
+GPU = False
+DIFF_METHOD = "spsa"
 SEED = np.random.randint(1,10000)
 
 SHOTS = 1024
@@ -55,7 +57,7 @@ TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = .005
+LEARNING_RATE = .01
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -103,10 +105,16 @@ print("\n🔧 Initializing model...")
 
 model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
              context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,
-             grad_method="spsa", shots=SHOTS, seed=SEED, spsa_samples=SPSA_SAMPLES, epsilon=SPSA_EPS).to(device)
+             grad_method=DIFF_METHOD, shots=SHOTS, seed=SEED, spsa_samples=SPSA_SAMPLES, epsilon=SPSA_EPS, gpu=GPU).to(device)
 
-
-optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
+#Set layer wise learning rates
+optimizer = optim.Adam([
+    {'params': model.input_layer.parameters(), 'lr': LEARNING_RATE*.1},
+    {'params': model.output_layer.parameters(), 'lr': LEARNING_RATE}
+], lr=LEARNING_RATE)
+#Print the learning rates
+for param_group in optimizer.param_groups:
+    print(f"Learning rate: {param_group['lr']}")
 criterion = nn.MSELoss().to(device)
 
 print("Model, optimizer, and loss function are ready.")
@@ -149,7 +157,7 @@ for epoch in range(EPOCHS):
         #losses.append(np.sqrt(loss.item()))
         
         if i % 100 == 0:
-            torch.save(model.state_dict(), f'./checkpoints/{epoch+1}_QRNN_{i}.pth')
+            torch.save(model.state_dict(), f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}.pth')
         
         
         end_time = time.time()
@@ -167,6 +175,7 @@ for epoch in range(EPOCHS):
         
     avg_epoch_loss = epoch_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.6f}")
+    torch.save(model.state_dict(), f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth')
 
 print("\n✅ Training complete!")
 

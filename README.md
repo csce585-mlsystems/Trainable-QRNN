@@ -63,6 +63,7 @@ We build upon prior work in QRNNs (Reference 1) and VQC optimization methods to 
 - Qiskit Aer
 - Matplotlib
 - Numpy 
+- Scikit-learn
 
 For Python users: Please use [uv](https://docs.astral.sh/uv/) as your package manager instead of `pip`. Your repo must include both the `uv.lock` and `pyproject.toml` files.  
 

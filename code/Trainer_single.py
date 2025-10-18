@@ -49,7 +49,7 @@ OUT_DIM = 2
 SPSA_SAMPLES = 4
 SPSA_EPS = .1
 GPU = False
-DIFF_METHOD = "spsa"
+DIFF_METHOD = "spsa-w"
 SEED = np.random.randint(1,10000)
 
 SHOTS = 1024
@@ -79,7 +79,7 @@ X = torch.tensor(X,dtype=torch.float)
 y = torch.tensor(y,dtype=torch.float)
 print(f"Total sequences created: {len(X)}")
 
-# --- ✨ NEW: Splitting data into training and testing sets ---
+#Splitting data into training and testing sets ---
 split_index = int(len(X) * TRAIN_TEST_SPLIT_RATIO)
 X_train, X_test = X[:split_index], X[split_index:]
 y_train, y_test = y[:split_index], y[split_index:]
@@ -139,6 +139,9 @@ for epoch in range(EPOCHS):
         loss = criterion(predicted_sequence[:, 5:, :], target_seq[:, 5:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
+
+        #Print input layer weights
+        #print("Input layer weights:", model.input_layer.bias)
 
         # -----------------------------------------------
         # before step

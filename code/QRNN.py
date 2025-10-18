@@ -5,7 +5,7 @@ from qiskit_aer import AerSimulator
 from qiskit import transpile
 
 from SimpleBlock import SimpleBlock
-from quantum_layerv4 import QuantumLayer
+from quantum_layerv5 import QuantumLayer
 
 
 class QRNN(nn.Module):
@@ -103,6 +103,7 @@ class QRNN(nn.Module):
     def forward(self, x):
         batch, time, _ = x.shape
         x_flat = x.reshape(batch * time, -1)
+        self._last_raw_inputs = x.clone().detach()
         encoded = self.input_layer(x_flat)
         encoded = encoded.view(batch, time, -1)
         out = QuantumLayer.apply(self, encoded, self.grad_method,self.eps,self.spsa_samples)

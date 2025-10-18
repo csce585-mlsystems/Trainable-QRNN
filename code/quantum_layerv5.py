@@ -58,7 +58,7 @@ class QuantumLayer(Function):
         rng = np.random.default_rng(seed)
 
         # --- SPSA (unchanged) ---
-        if grad_method.startswith("spsa"):
+        if grad_method == 'spsa':
             m = max(1, int(spsa_samples))
             c = float(eps)
 
@@ -134,7 +134,7 @@ class QuantumLayer(Function):
             return (None, grad_x, None, None, None)
 
         # --- Manual finite-difference (central difference) implementation ---
-        if grad_method.startswith("finite") or grad_method.startswith("fd") or grad_method.startswith("finite-diff"):
+        if grad_method == "finite-diff":
             h = float(eps)
 
             # flatten base parameter vectors per sample
@@ -209,6 +209,148 @@ class QuantumLayer(Function):
                 grad_x[b] = grad_encoded_torch
 
             return (None, grad_x, None, None, None)
+        
+        if grad_method == 'spsa-w':
+            m = max(1, int(spsa_samples))
+            c = float(eps)
+            in_layer = qrnn.input_layer
+            W_param = in_layer.weight
+            b_param = in_layer.bias
+            params_c, in_features = W_param.shape
+            num_weights = params_c * in_features
+            has_bias = b_param is not None
+            raw_inputs = getattr(qrnn, "_last_raw_inputs", None)
+            if raw_inputs is None:
+                raise RuntimeError("spsa-w requires qrnn._last_raw_inputs")
+            raw_flat = raw_inputs.reshape(batch_size * time_steps, -1)
+            device = x_saved.device
+            dtype = x_saved.dtype
+            raw_flat_torch = raw_flat.to(device=device, dtype=dtype)
+            gout_all = [grad_output[b].detach().cpu().numpy() for b in range(batch_size)]
+            g_est_acc = np.zeros((batch_size, params_c, in_features), dtype=float)
+            for k in range(m):
+                delta = rng.choice([-1.0, 1.0], size=(params_c, in_features))
+                with torch.no_grad():
+                    W_param.data += (c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
+                with torch.no_grad():
+                    encoded_flat = in_layer(raw_flat_torch)
+                encoded = encoded_flat.view(batch_size, time_steps, params_c)
+                probs = qrnn._quantum_forward(encoded)
+                if isinstance(probs, torch.Tensor):
+                    probs_np = probs.detach().cpu().numpy()
+                else:
+                    probs_np = np.array(probs)
+                s_plus = np.zeros((batch_size,), dtype=float)
+                for b in range(batch_size):
+                    gout = gout_all[b]
+                    s_plus[b] = float(np.sum(gout * probs_np[b]))
+                with torch.no_grad():
+                    W_param.data -= (2.0 * c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
+                with torch.no_grad():
+                    encoded_flat = in_layer(raw_flat_torch)
+                encoded = encoded_flat.view(batch_size, time_steps, params_c)
+                probs = qrnn._quantum_forward(encoded)
+                if isinstance(probs, torch.Tensor):
+                    probs_np = probs.detach().cpu().numpy()
+                else:
+                    probs_np = np.array(probs)
+                s_minus = np.zeros((batch_size,), dtype=float)
+                for b in range(batch_size):
+                    gout = gout_all[b]
+                    s_minus[b] = float(np.sum(gout * probs_np[b]))
+                with torch.no_grad():
+                    W_param.data += (c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
+                diff = (s_plus - s_minus)
+                for b in range(batch_size):
+                    contrib = (diff[b] / (2.0 * c)) * (1.0 / delta)
+                    g_est_acc[b] += contrib
+            g_est_acc /= float(m)
+            dL_dW = g_est_acc.mean(axis=0)
+            if has_bias:
+                dL_db = np.zeros((params_c,), dtype=float)
+                bvals = b_param.detach().cpu().numpy()
+                for i in range(params_c):
+                    dL_db[i] = 0.0
+                # optional: estimate bias via same SPSA direction on bias-only if desired; leave zeros for now
+            if W_param.grad is None:
+                W_param.grad = torch.zeros_like(W_param.data)
+            W_param.grad[:] = torch.tensor(dL_dW, dtype=W_param.dtype, device=W_param.device)
+            if has_bias:
+                if b_param.grad is None:
+                    b_param.grad = torch.zeros_like(b_param.data)
+                b_param.grad[:] = torch.tensor(dL_db, dtype=b_param.dtype, device=b_param.device)
+            return (None, None, None, None, None)
+
+        if grad_method == 'finite-diff-w':
+            h = float(eps)
+            in_layer = qrnn.input_layer
+            W_param = in_layer.weight
+            b_param = in_layer.bias
+            params_c, in_features = W_param.shape
+            has_bias = b_param is not None
+            raw_inputs = getattr(qrnn, "_last_raw_inputs", None)
+            if raw_inputs is None:
+                raise RuntimeError("finite-w requires qrnn._last_raw_inputs")
+            raw_flat = raw_inputs.reshape(batch_size * time_steps, -1)
+            device = x_saved.device
+            dtype = x_saved.dtype
+            raw_flat_torch = raw_flat.to(device=device, dtype=dtype)
+            def compute_s_current():
+                with torch.no_grad():
+                    encoded_flat = in_layer(raw_flat_torch)
+                encoded = encoded_flat.view(batch_size, time_steps, params_c)
+                probs = qrnn._quantum_forward(encoded)
+                if isinstance(probs, torch.Tensor):
+                    probs_np = probs.detach().cpu().numpy()
+                else:
+                    probs_np = np.array(probs)
+                s_per_sample = np.zeros((batch_size,), dtype=float)
+                for b in range(batch_size):
+                    gout = grad_output[b].detach().cpu().numpy()
+                    s_per_sample[b] = float(np.sum(gout * probs_np[b]))
+                return s_per_sample
+            qrnn._backup()
+            dL_dW_accum = np.zeros((batch_size, params_c, in_features), dtype=float)
+            dL_db_accum = np.zeros((batch_size, params_c), dtype=float) if has_bias else None
+            print(params_c * in_features)
+            for i in range(params_c):
+                for j in range(in_features):
+                    with torch.no_grad():
+                        W_param.data[i, j] += h
+                    s_plus = compute_s_current()
+                    with torch.no_grad():
+                        W_param.data[i, j] -= 2.0 * h
+                    s_minus = compute_s_current()
+                    with torch.no_grad():
+                        W_param.data[i, j] += h
+                    dvals = (s_plus - s_minus) / (2.0 * h)
+                    for b in range(batch_size):
+                        dL_dW_accum[b, i, j] = dvals[b]
+            if has_bias:
+                for i in range(params_c):
+                    with torch.no_grad():
+                        b_param.data[i] += h
+                    s_plus = compute_s_current()
+                    with torch.no_grad():
+                        b_param.data[i] -= 2.0 * h
+                    s_minus = compute_s_current()
+                    with torch.no_grad():
+                        b_param.data[i] += h
+                    dvals = (s_plus - s_minus) / (2.0 * h)
+                    for b in range(batch_size):
+                        dL_db_accum[b, i] = dvals[b]
+            dL_dW = dL_dW_accum.mean(axis=0)
+            dL_db = dL_db_accum.mean(axis=0) if has_bias else None
+            if W_param.grad is None:
+                W_param.grad = torch.zeros_like(W_param.data)
+            W_param.grad[:] = torch.tensor(dL_dW, dtype=W_param.dtype, device=W_param.device)
+            if has_bias:
+                if b_param.grad is None:
+                    b_param.grad = torch.zeros_like(b_param.data)
+                b_param.grad[:] = torch.tensor(dL_db, dtype=b_param.dtype, device=b_param.device)
+            qrnn._restore_params()
+            return (None, None, None, None, None)
 
         # If unknown method, return zeros
+        print('Unknown Grad Method, returning Zeroes...')
         return (None, grad_x, None, None, None)

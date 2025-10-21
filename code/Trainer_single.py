@@ -10,6 +10,45 @@ from QRNN import QRNN
 from tqdm import tqdm
 import time
 
+def create_test_data(CONTEXT_LENGTH, PREDICTION_HORIZON, IN_DIM, OUT_DIM, split, device):
+    try:
+        raw_data = np.load("train_data_lorenz_full.npy")
+    except FileNotFoundError:
+        print("Error: 'train_data_lorenz_full.npy' not found.")
+        raise
+
+    # Split into train/test
+    split_index = int(len(raw_data) * split)
+    test_data = raw_data[split_index:]  # full test sequence
+
+    # Input = only the driving dimension (col 0)
+    # Labels = the prediction targets (col 1,2)
+    X_test = torch.tensor(test_data[:, 0], dtype=torch.float32).view(1, -1, 1).to(device)  # shape (1, seq_len, in_dim)
+    y_test = torch.tensor(test_data[:, 1:3], dtype=torch.float32).view(1, -1, OUT_DIM).to(device)
+
+    # --- Build context-windowed test sequence ---
+    inputs = []
+    labels = []
+    total_length = CONTEXT_LENGTH + PREDICTION_HORIZON
+
+    for i in range(len(test_data) - total_length + 1):
+        # input = sliding window from first column
+        window = test_data[i : i + CONTEXT_LENGTH, 0]
+        inputs.append(window)
+
+        # label = future target from columns 1:3
+        label = test_data[i + CONTEXT_LENGTH + PREDICTION_HORIZON - 1, 1:3]
+        labels.append(label)
+
+    inputs = inputs
+    labels = labels
+
+    X_test = torch.tensor(inputs, dtype=torch.float32).view(1, -1, CONTEXT_LENGTH * IN_DIM).to(device)
+    y_test = torch.tensor(labels, dtype=torch.float32).view(1, -1, OUT_DIM).to(device)
+
+    print(f"Test data shape: {X_test.shape}, Labels shape: {y_test.shape}")
+    return X_test, y_test
+
 def create_sequences(data, context_length, sequence_length, time_step_shift):
 
     inputs = []
@@ -41,7 +80,7 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 # --- 1. Hyperparameters ---
 N_QUBITS = 8
 REPEAT_BLOCKS = 1
-CONTEXT_LENGTH = 3
+CONTEXT_LENGTH = 1
 SEQUENCE_LENGTH = 20
 PREDICTION_HORIZON = 1
 IN_DIM = 1
@@ -50,19 +89,19 @@ SPSA_SAMPLES = 4
 SPSA_EPS = .1
 GPU = False
 DIFF_METHOD = "spsa-w"
-SEED = np.random.randint(1,10000)
+SEED = 1929#np.random.randint(1,10000)
 
 SHOTS = 1024
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = .01
+LEARNING_RATE = .001
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
 if torch.cuda.is_available():
-    device = torch.device("cuda")
+    device = torch.device("cpu") #Using CPU is not faster for the classical layers yet
 else:
     device = torch.device("cpu")
 print(f"Using device: {device}")
@@ -81,24 +120,24 @@ print(f"Total sequences created: {len(X)}")
 
 #Splitting data into training and testing sets ---
 split_index = int(len(X) * TRAIN_TEST_SPLIT_RATIO)
-X_train, X_test = X[:split_index], X[split_index:]
-y_train, y_test = y[:split_index], y[split_index:]
+X_train = X[:split_index]#, X[split_index:]
+y_train = y[:split_index]#, y[split_index:]
 
 #Subsample the train data set getting every other sequence
-X_train = X_train[::10]
-y_train = y_train[::10]
+X_train = X_train[::5]
+y_train = y_train[::5]
 
 print(f"Training set size: {len(X_train)} sequences")
-print(f"Test set size: {len(X_test)} sequences")
+#print(f"Test set size: {len(X_test)} sequences")
 
 # --- Create DataLoaders for both sets ---
 train_dataset = TensorDataset(X_train, y_train)
-test_dataset = TensorDataset(X_test, y_test)
+X_test, y_test = create_test_data(CONTEXT_LENGTH, PREDICTION_HORIZON, IN_DIM, OUT_DIM, TRAIN_TEST_SPLIT_RATIO, device)
 
 
 
 train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, drop_last=True)
-test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False, drop_last=True) # No shuffle for test set
+
 
 # --- 3. Model, Optimizer, and Loss Function ---
 print("\n🔧 Initializing model...")
@@ -109,7 +148,7 @@ model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_
 
 #Set layer wise learning rates
 optimizer = optim.Adam([
-    {'params': model.input_layer.parameters(), 'lr': LEARNING_RATE*.1},
+    {'params': model.input_layer.parameters(), 'lr': LEARNING_RATE},
     {'params': model.output_layer.parameters(), 'lr': LEARNING_RATE}
 ], lr=LEARNING_RATE)
 #Print the learning rates
@@ -122,11 +161,14 @@ print("Model, optimizer, and loss function are ready.")
 # --- 4. Training Loop ---
 print("Starting training...")
 losses = []
+val_losses = []
 for epoch in range(EPOCHS):
     model.train()
     epoch_loss = 0.0
     i = 1
     loss_batch = []
+    #Print input layer weights
+    print("Input layer weights:", model.input_layer.bias)
     
     for batch_idx, (input_seq, target_seq) in tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch+1}"):
         start_time = time.time()
@@ -136,7 +178,7 @@ for epoch in range(EPOCHS):
 
         predicted_sequence, quantum_probs = model(input_seq)   # (batch, seq_len, out_dim)
         #print(quantum_probs)
-        loss = criterion(predicted_sequence[:, 5:, :], target_seq[:, 5:, :]) #Ignore first timestep
+        loss = criterion(predicted_sequence[:, 4:, :], target_seq[:, 4:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
 
@@ -179,6 +221,19 @@ for epoch in range(EPOCHS):
     avg_epoch_loss = epoch_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.6f}")
     torch.save(model.state_dict(), f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth')
+    #Run validation after each epoch
+    with torch.no_grad():
+        preds,_ = model(X_test)
+
+    preds = preds.cpu().numpy()[0]   # (seq_len, out_dim)
+    y_true = y_test.cpu().numpy()[0]
+    rmse_dim0 = np.sqrt(np.mean((y_true[:, 0] - preds[:, 0])**2))
+    rmse_dim1 = np.sqrt(np.mean((y_true[:, 1] - preds[:, 1])**2))
+
+    val_losses.append((rmse_dim0, rmse_dim1, (rmse_dim0+rmse_dim1)/2))
+    print(f"Validation RMSE - Y: {rmse_dim0:.6f}, Z: {rmse_dim1:.6f}, Avg: {(rmse_dim0+rmse_dim1)/2:.6f}")
+
+
 
 print("\n✅ Training complete!")
 

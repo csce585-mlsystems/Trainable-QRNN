@@ -11,7 +11,7 @@ from quantum_layerv5 import QuantumLayer
 class QRNN(nn.Module):
     def __init__(self, n_qubits, repeat_blocks, in_dim, out_dim,
                  context_length, sequence_length, batch_size,
-                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2,gpu=True):
+                 shots=4096, seed=0, grad_method="finite-diff",epsilon=1e-1,spsa_samples=2,gpu=False):
         super(QRNN, self).__init__()
 
         self.n_qubits = n_qubits
@@ -58,6 +58,7 @@ class QRNN(nn.Module):
         else:
             self.sim = AerSimulator()
         self.compiled = transpile(self.qc, self.sim)
+        #self.compiled.draw(output='mpl',filename='circuit_diagram.png')
 
         self._backup_params = {}
 
@@ -106,7 +107,11 @@ class QRNN(nn.Module):
         self._last_raw_inputs = x.clone().detach()
         encoded = self.input_layer(x_flat)
         encoded = encoded.view(batch, time, -1)
+        #Move to cpu for quantum layer
+        encoded = encoded.to('cpu')
         out = QuantumLayer.apply(self, encoded, self.grad_method,self.eps,self.spsa_samples)
+        #back to original device
+        out = out.to(x.device)
         return self.output_layer(out), out
 
     def _get_param(self, fullname):

@@ -211,27 +211,53 @@ class QuantumLayer(Function):
             return (None, grad_x, None, None, None)
         
         if grad_method == 'spsa-w':
+            # m = number of SPSA samples, c = perturbation scale (eps)
             m = max(1, int(spsa_samples))
             c = float(eps)
+
             in_layer = qrnn.input_layer
             W_param = in_layer.weight
             b_param = in_layer.bias
+
             params_c, in_features = W_param.shape
             num_weights = params_c * in_features
-            has_bias = b_param is not None
+            has_bias = (b_param is not None)
+
             raw_inputs = getattr(qrnn, "_last_raw_inputs", None)
             if raw_inputs is None:
                 raise RuntimeError("spsa-w requires qrnn._last_raw_inputs")
+
+            # flatten raw inputs (same as your original)
             raw_flat = raw_inputs.reshape(batch_size * time_steps, -1)
             device = x_saved.device
             dtype = x_saved.dtype
             raw_flat_torch = raw_flat.to(device=device, dtype=dtype)
+
+            # precompute grad-output per batch as numpy arrays 
             gout_all = [grad_output[b].detach().cpu().numpy() for b in range(batch_size)]
+
+            # accumulators: per-batch contributions
             g_est_acc = np.zeros((batch_size, params_c, in_features), dtype=float)
+            if has_bias:
+                db_est_acc = np.zeros((batch_size, params_c), dtype=float)
+
+            # Main combined SPSA loop: perturb both W and b in each iteration
             for k in range(m):
-                delta = rng.choice([-1.0, 1.0], size=(params_c, in_features))
+                # create ±1 perturbations for weights and bias
+                delta_w = rng.choice([-1.0, 1.0], size=(params_c, in_features))
+                delta_w_t = torch.tensor(delta_w, dtype=W_param.dtype, device=W_param.device)
+
+                if has_bias:
+                    delta_b = rng.choice([-1.0, 1.0], size=(params_c,))
+                    delta_b_t = torch.tensor(delta_b, dtype=b_param.dtype, device=b_param.device)
+
+                # --- +c perturbation ---
                 with torch.no_grad():
-                    W_param.data += (c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
+                    W_param.data += (c * delta_w_t)
+                    if has_bias:
+                        b_param.data += (c * delta_b_t)
+
+                # forward with +c
                 with torch.no_grad():
                     encoded_flat = in_layer(raw_flat_torch)
                 encoded = encoded_flat.view(batch_size, time_steps, params_c)
@@ -240,12 +266,19 @@ class QuantumLayer(Function):
                     probs_np = probs.detach().cpu().numpy()
                 else:
                     probs_np = np.array(probs)
+
                 s_plus = np.zeros((batch_size,), dtype=float)
                 for b in range(batch_size):
                     gout = gout_all[b]
                     s_plus[b] = float(np.sum(gout * probs_np[b]))
+
+                # --- -2c perturbation (i.e., go to -c 
                 with torch.no_grad():
-                    W_param.data -= (2.0 * c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
+                    W_param.data -= (2.0 * c * delta_w_t)
+                    if has_bias:
+                        b_param.data -= (2.0 * c * delta_b_t)
+
+                # forward with -c
                 with torch.no_grad():
                     encoded_flat = in_layer(raw_flat_torch)
                 encoded = encoded_flat.view(batch_size, time_steps, params_c)
@@ -254,32 +287,53 @@ class QuantumLayer(Function):
                     probs_np = probs.detach().cpu().numpy()
                 else:
                     probs_np = np.array(probs)
+
                 s_minus = np.zeros((batch_size,), dtype=float)
                 for b in range(batch_size):
                     gout = gout_all[b]
                     s_minus[b] = float(np.sum(gout * probs_np[b]))
+
+                # --- restore +c 
                 with torch.no_grad():
-                    W_param.data += (c * torch.tensor(delta, dtype=W_param.dtype, device=W_param.device))
-                diff = (s_plus - s_minus)
+                    W_param.data += (c * delta_w_t)
+                    if has_bias:
+                        b_param.data += (c * delta_b_t)
+
+                # finite-difference estimate for this sample k
+                diff = (s_plus - s_minus)  # shape (batch_size,)
+
+                # accumulate per-batch contributions
+                # weight contribution per element: (diff[b]/(2*c)) * (1.0/delta_w)
+                # since delta_w entries are ±1, 1.0/delta_w == delta_w
                 for b in range(batch_size):
-                    contrib = (diff[b] / (2.0 * c)) * (1.0 / delta)
-                    g_est_acc[b] += contrib
-            g_est_acc /= float(m)
-            dL_dW = g_est_acc.mean(axis=0)
+                    # reshape factor to match (params_c, in_features)
+                    factor = (diff[b] / (2.0 * c))
+                    g_est_acc[b] += factor * (1.0 / delta_w)   # numpy arrays -> safe broadcasting
+                    if has_bias:
+                        # bias contribution: (diff[b]/(2*c)) * (1.0/delta_b)
+                        db_est_acc[b] += (diff[b] / (2.0 * c)) * (1.0 / delta_b)
+
+            # average over m and batches
+            g_est_mean = g_est_acc.mean(axis=0)  # shape (params_c, in_features)
+            dL_dW = g_est_mean  # numpy array
+
             if has_bias:
+                dL_db = db_est_acc.mean(axis=0)  # shape (params_c,)
+            else:
                 dL_db = np.zeros((params_c,), dtype=float)
-                bvals = b_param.detach().cpu().numpy()
-                for i in range(params_c):
-                    dL_db[i] = 0.0
-                # optional: estimate bias via same SPSA direction on bias-only if desired; leave zeros for now
+
+            # write gradients back into torch tensors
             if W_param.grad is None:
                 W_param.grad = torch.zeros_like(W_param.data)
             W_param.grad[:] = torch.tensor(dL_dW, dtype=W_param.dtype, device=W_param.device)
+
             if has_bias:
                 if b_param.grad is None:
                     b_param.grad = torch.zeros_like(b_param.data)
                 b_param.grad[:] = torch.tensor(dL_db, dtype=b_param.dtype, device=b_param.device)
+
             return (None, None, None, None, None)
+
 
         if grad_method == 'finite-diff-w':
             h = float(eps)

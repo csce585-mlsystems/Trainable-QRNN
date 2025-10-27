@@ -4,7 +4,7 @@ import numpy as np
 from qiskit_aer import AerSimulator
 from qiskit import transpile
 
-from SimpleBlock import SimpleBlock
+from SimpleBlock_z import SimpleBlock
 from quantum_layerv5 import QuantumLayer
 
 
@@ -40,7 +40,8 @@ class QRNN(nn.Module):
         )
 
         self.params_c = len(self.param_vectors[0])
-
+        #Set seed for parameter initialization
+        torch.manual_seed(self.seed)
         self.input_layer = nn.Linear(in_dim * context_length, self.params_c)
         CONSTANT = (context_length*(repeat_blocks)*np.ceil(in_dim))
         scale = np.pi / CONSTANT  # ~0.39 rad
@@ -58,7 +59,7 @@ class QRNN(nn.Module):
         else:
             self.sim = AerSimulator()
         self.compiled = transpile(self.qc, self.sim)
-        #self.compiled.draw(output='mpl',filename='circuit_diagram.png')
+        #self.compiled.draw(output='mpl',filename='circuit_diagram_z.png')
 
         self._backup_params = {}
 
@@ -102,6 +103,7 @@ class QRNN(nn.Module):
 
 
     def forward(self, x):
+        #x.requires_grad = True
         batch, time, _ = x.shape
         x_flat = x.reshape(batch * time, -1)
         self._last_raw_inputs = x.clone().detach()

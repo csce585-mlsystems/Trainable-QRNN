@@ -78,7 +78,7 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 
 # --- 1. Hyperparameters ---
-N_QUBITS = 8
+N_QUBITS = 12
 REPEAT_BLOCKS = 1
 CONTEXT_LENGTH = 1
 SEQUENCE_LENGTH = 20
@@ -91,12 +91,16 @@ GPU = False
 DIFF_METHOD = "spsa-w"
 SEED = 1929#np.random.randint(1,10000)
 
-SHOTS = 1024
+LOAD_CHECKPOINT = False
+checkpoint_path = "./checkpoints/lorenz_8_finite-diff-w_SIMPLE_1_1024_2_QRNN_1385_LAST.pth"
+
+
+SHOTS = 2048
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
 BATCH_SIZE = 1
-LEARNING_RATE = .001
+LEARNING_RATE = .007
 
 # --- 2. Data Loading and Preparation ---
 print("🚀 Starting data preparation...")
@@ -146,6 +150,9 @@ model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_
              context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,
              grad_method=DIFF_METHOD, shots=SHOTS, seed=SEED, spsa_samples=SPSA_SAMPLES, epsilon=SPSA_EPS, gpu=GPU).to(device)
 
+if LOAD_CHECKPOINT:
+    model.load_state_dict(torch.load(checkpoint_path, map_location=device))
+
 #Set layer wise learning rates
 optimizer = optim.Adam([
     {'params': model.input_layer.parameters(), 'lr': LEARNING_RATE},
@@ -162,13 +169,14 @@ print("Model, optimizer, and loss function are ready.")
 print("Starting training...")
 losses = []
 val_losses = []
-for epoch in range(EPOCHS):
+for epoch in range(0,EPOCHS):
     model.train()
     epoch_loss = 0.0
     i = 1
     loss_batch = []
     #Print input layer weights
-    print("Input layer weights:", model.input_layer.bias)
+    print("Input layer weights:", model.input_layer.weight)
+    print("Input layer bias:", model.input_layer.bias)
     
     for batch_idx, (input_seq, target_seq) in tqdm(enumerate(train_loader), total=len(train_loader), desc=f"Epoch {epoch+1}"):
         start_time = time.time()
@@ -178,7 +186,7 @@ for epoch in range(EPOCHS):
 
         predicted_sequence, quantum_probs = model(input_seq)   # (batch, seq_len, out_dim)
         #print(quantum_probs)
-        loss = criterion(predicted_sequence[:, 4:, :], target_seq[:, 4:, :]) #Ignore first timestep
+        loss = criterion(predicted_sequence[:, 5:, :], target_seq[:, 5:, :]) #Ignore first timestep
         loss.backward()
         optimizer.step()
 
@@ -220,10 +228,17 @@ for epoch in range(EPOCHS):
         
     avg_epoch_loss = epoch_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.6f}")
-    torch.save(model.state_dict(), f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth')
+    last_checkpoint_path = f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth'
+    torch.save(model.state_dict(), last_checkpoint_path)
     #Run validation after each epoch
+    #Instantiate new model with full sequence length for evaluation
+    eval_model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
+             context_length=CONTEXT_LENGTH, sequence_length=X_test.shape[1], batch_size=1,
+             grad_method=DIFF_METHOD, shots=SHOTS, seed=SEED, spsa_samples=SPSA_SAMPLES, epsilon=SPSA_EPS, gpu=GPU).to(device)
+    eval_model.load_state_dict(torch.load(last_checkpoint_path, map_location=device))
+    eval_model.eval()
     with torch.no_grad():
-        preds,_ = model(X_test)
+        preds,_ = eval_model(X_test)
 
     preds = preds.cpu().numpy()[0]   # (seq_len, out_dim)
     y_true = y_test.cpu().numpy()[0]
@@ -232,6 +247,7 @@ for epoch in range(EPOCHS):
 
     val_losses.append((rmse_dim0, rmse_dim1, (rmse_dim0+rmse_dim1)/2))
     print(f"Validation RMSE - Y: {rmse_dim0:.6f}, Z: {rmse_dim1:.6f}, Avg: {(rmse_dim0+rmse_dim1)/2:.6f}")
+    np.save('val_losses.npy', val_losses)
 
 
 

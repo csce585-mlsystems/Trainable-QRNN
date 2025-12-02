@@ -78,14 +78,14 @@ def create_sequences(data, context_length, sequence_length, time_step_shift):
 
 
 # --- 1. Hyperparameters ---
-N_QUBITS = 12
+N_QUBITS = 8
 REPEAT_BLOCKS = 1
 CONTEXT_LENGTH = 1
 SEQUENCE_LENGTH = 20
 PREDICTION_HORIZON = 1
 IN_DIM = 1
 OUT_DIM = 2
-SPSA_SAMPLES = 4
+SPSA_SAMPLES = 2
 SPSA_EPS = .1
 GPU = False
 DIFF_METHOD = "spsa-w"
@@ -95,7 +95,7 @@ LOAD_CHECKPOINT = False
 checkpoint_path = "./checkpoints/lorenz_8_finite-diff-w_SIMPLE_1_1024_2_QRNN_1385_LAST.pth"
 
 
-SHOTS = 2048
+SHOTS = 1024
 TRAIN_TEST_SPLIT_RATIO = 0.7
 
 EPOCHS = 10
@@ -144,7 +144,7 @@ train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, dr
 
 
 # --- 3. Model, Optimizer, and Loss Function ---
-print("\n🔧 Initializing model...")
+print("\n Initializing model...")
 
 model = QRNN(n_qubits=N_QUBITS, repeat_blocks=REPEAT_BLOCKS, in_dim=IN_DIM, out_dim=OUT_DIM,
              context_length=CONTEXT_LENGTH, sequence_length=SEQUENCE_LENGTH, batch_size=BATCH_SIZE,

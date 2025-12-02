@@ -1,0 +1,1874 @@
+🚀 Starting data preparation...
+Using device: cpu
+(9880, 20, 1)
+(9880, 20, 2)
+Total sequences created: 9880
+Training set size: 1384 sequences
+Test data shape: torch.Size([1, 2969, 1]), Labels shape: torch.Size([1, 2969, 2])
+
+🔧 Initializing model...
+Params per timestep: 55
+Learning rate: 0.001
+Learning rate: 0.001
+Model, optimizer, and loss function are ready.
+Starting training...
+Input layer weights: Parameter containing:
+tensor([[ 2.3642],
+        [ 3.1144],
+        [ 0.1920],
+        [ 2.6758],
+        [-2.4308],
+        [ 2.9672],
+        [-2.2579],
+        [-2.8918],
+        [ 0.2670],
+        [-2.4786],
+        [ 2.1790],
+        [ 2.3745],
+        [ 3.0351],
+        [ 2.5638],
+        [ 2.4324],
+        [ 1.7775],
+        [-1.0724],
+        [-1.6746],
+        [ 0.4515],
+        [-0.8699],
+        [-1.8255],
+        [ 1.6348],
+        [-2.1701],
+        [-2.1763],
+        [ 2.2303],
+        [ 0.4002],
+        [ 1.5448],
+        [-2.2894],
+        [ 3.1829],
+        [ 1.0408],
+        [ 1.0800],
+        [-1.6789],
+        [-1.7102],
+        [ 0.3045],
+        [ 1.5029],
+        [ 1.6705],
+        [-2.5213],
+        [ 2.7118],
+        [ 1.9896],
+        [-2.3266],
+        [-0.4862],
+        [-1.6509],
+        [ 1.8163],
+        [ 0.8892],
+        [ 2.8960],
+        [ 2.2304],
+        [ 1.5715],
+        [-2.1152],
+        [ 1.6526],
+        [ 3.1189],
+        [ 0.9012],
+        [ 2.4799],
+        [ 2.1237],
+        [ 2.5044],
+        [ 1.8863]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3862,  0.3483,  1.2154,  1.3962,  0.4955, -0.3720, -0.1398,  1.0063,
+        -0.4855, -0.8802,  0.1534,  0.2394,  1.6025,  1.1952, -1.1817, -0.2831,
+         0.8166,  0.9722,  1.2640, -1.3017, -0.0250,  0.9737,  1.2245, -1.0302,
+        -1.5295, -0.5596, -0.0437,  1.3347,  0.0770, -0.5798, -0.1924, -0.5354,
+        -0.5114, -0.7015, -1.4026, -0.6719,  0.5573,  0.4547, -0.1271, -1.0818,
+        -0.6466, -1.4908, -0.2985,  0.4378, -1.4259,  1.0486,  0.3127,  0.0051,
+        -0.1935,  1.3944,  0.6867,  0.6835, -0.5558, -0.5652,  0.4798],
+       requires_grad=True)
+Epoch 2--- Average Loss over last 10 data points: 0.088350 ---
+Epoch 2--- Average Loss over last 10 data points: 0.134505 ---
+Epoch 2--- Average Loss over last 10 data points: 0.121187 ---
+Epoch 2--- Average Loss over last 10 data points: 0.112796 ---
+Epoch 2--- Average Loss over last 10 data points: 0.128294 ---
+Epoch 2--- Average Loss over last 10 data points: 0.130471 ---
+Epoch 2--- Average Loss over last 10 data points: 0.081131 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102278 ---
+Epoch 2--- Average Loss over last 10 data points: 0.095597 ---
+Epoch 2--- Average Loss over last 10 data points: 0.145853 ---
+Epoch 2--- Average Loss over last 10 data points: 0.129718 ---
+Epoch 2--- Average Loss over last 10 data points: 0.087890 ---
+Epoch 2--- Average Loss over last 10 data points: 0.098592 ---
+Epoch 2--- Average Loss over last 10 data points: 0.084705 ---
+Epoch 2--- Average Loss over last 10 data points: 0.099690 ---
+Epoch 2--- Average Loss over last 10 data points: 0.117954 ---
+Epoch 2--- Average Loss over last 10 data points: 0.082273 ---
+Epoch 2--- Average Loss over last 10 data points: 0.116700 ---
+Epoch 2--- Average Loss over last 10 data points: 0.121941 ---
+Epoch 2--- Average Loss over last 10 data points: 0.113663 ---
+Epoch 2--- Average Loss over last 10 data points: 0.116599 ---
+Epoch 2--- Average Loss over last 10 data points: 0.108065 ---
+Epoch 2--- Average Loss over last 10 data points: 0.119178 ---
+Epoch 2--- Average Loss over last 10 data points: 0.109354 ---
+Epoch 2--- Average Loss over last 10 data points: 0.094561 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102083 ---
+Epoch 2--- Average Loss over last 10 data points: 0.123321 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103573 ---
+Epoch 2--- Average Loss over last 10 data points: 0.121124 ---
+Epoch 2--- Average Loss over last 10 data points: 0.107618 ---
+Epoch 2--- Average Loss over last 10 data points: 0.087862 ---
+Epoch 2--- Average Loss over last 10 data points: 0.120319 ---
+Epoch 2--- Average Loss over last 10 data points: 0.122533 ---
+Epoch 2--- Average Loss over last 10 data points: 0.134968 ---
+Epoch 2--- Average Loss over last 10 data points: 0.114275 ---
+Epoch 2--- Average Loss over last 10 data points: 0.124295 ---
+Epoch 2--- Average Loss over last 10 data points: 0.109865 ---
+Epoch 2--- Average Loss over last 10 data points: 0.091926 ---
+Epoch 2--- Average Loss over last 10 data points: 0.112247 ---
+Epoch 2--- Average Loss over last 10 data points: 0.111443 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102208 ---
+Epoch 2--- Average Loss over last 10 data points: 0.093556 ---
+Epoch 2--- Average Loss over last 10 data points: 0.106673 ---
+Epoch 2--- Average Loss over last 10 data points: 0.097411 ---
+Epoch 2--- Average Loss over last 10 data points: 0.120915 ---
+Epoch 2--- Average Loss over last 10 data points: 0.108450 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103928 ---
+Epoch 2--- Average Loss over last 10 data points: 0.116912 ---
+Epoch 2--- Average Loss over last 10 data points: 0.121195 ---
+Epoch 2--- Average Loss over last 10 data points: 0.126872 ---
+Epoch 2--- Average Loss over last 10 data points: 0.089083 ---
+Epoch 2--- Average Loss over last 10 data points: 0.123304 ---
+Epoch 2--- Average Loss over last 10 data points: 0.118977 ---
+Epoch 2--- Average Loss over last 10 data points: 0.107512 ---
+Epoch 2--- Average Loss over last 10 data points: 0.101320 ---
+Epoch 2--- Average Loss over last 10 data points: 0.123147 ---
+Epoch 2--- Average Loss over last 10 data points: 0.114126 ---
+Epoch 2--- Average Loss over last 10 data points: 0.090101 ---
+Epoch 2--- Average Loss over last 10 data points: 0.116471 ---
+Epoch 2--- Average Loss over last 10 data points: 0.100734 ---
+Epoch 2--- Average Loss over last 10 data points: 0.104589 ---
+Epoch 2--- Average Loss over last 10 data points: 0.088611 ---
+Epoch 2--- Average Loss over last 10 data points: 0.135255 ---
+Epoch 2--- Average Loss over last 10 data points: 0.098571 ---
+Epoch 2--- Average Loss over last 10 data points: 0.085324 ---
+Epoch 2--- Average Loss over last 10 data points: 0.100890 ---
+Epoch 2--- Average Loss over last 10 data points: 0.106051 ---
+Epoch 2--- Average Loss over last 10 data points: 0.118497 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102206 ---
+Epoch 2--- Average Loss over last 10 data points: 0.120569 ---
+Epoch 2--- Average Loss over last 10 data points: 0.101696 ---
+Epoch 2--- Average Loss over last 10 data points: 0.099925 ---
+Epoch 2--- Average Loss over last 10 data points: 0.097626 ---
+Epoch 2--- Average Loss over last 10 data points: 0.107858 ---
+Epoch 2--- Average Loss over last 10 data points: 0.100664 ---
+Epoch 2--- Average Loss over last 10 data points: 0.106065 ---
+Epoch 2--- Average Loss over last 10 data points: 0.092811 ---
+Epoch 2--- Average Loss over last 10 data points: 0.136017 ---
+Epoch 2--- Average Loss over last 10 data points: 0.070921 ---
+Epoch 2--- Average Loss over last 10 data points: 0.097834 ---
+Epoch 2--- Average Loss over last 10 data points: 0.121809 ---
+Epoch 2--- Average Loss over last 10 data points: 0.093517 ---
+Epoch 2--- Average Loss over last 10 data points: 0.093745 ---
+Epoch 2--- Average Loss over last 10 data points: 0.085364 ---
+Epoch 2--- Average Loss over last 10 data points: 0.107901 ---
+Epoch 2--- Average Loss over last 10 data points: 0.075298 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102652 ---
+Epoch 2--- Average Loss over last 10 data points: 0.101558 ---
+Epoch 2--- Average Loss over last 10 data points: 0.096611 ---
+Epoch 2--- Average Loss over last 10 data points: 0.078849 ---
+Epoch 2--- Average Loss over last 10 data points: 0.120883 ---
+Epoch 2--- Average Loss over last 10 data points: 0.127374 ---
+Epoch 2--- Average Loss over last 10 data points: 0.082881 ---
+Epoch 2--- Average Loss over last 10 data points: 0.111424 ---
+Epoch 2--- Average Loss over last 10 data points: 0.081095 ---
+Epoch 2--- Average Loss over last 10 data points: 0.127719 ---
+Epoch 2--- Average Loss over last 10 data points: 0.117873 ---
+Epoch 2--- Average Loss over last 10 data points: 0.101621 ---
+Epoch 2--- Average Loss over last 10 data points: 0.104203 ---
+Epoch 2--- Average Loss over last 10 data points: 0.087365 ---
+Epoch 2--- Average Loss over last 10 data points: 0.100905 ---
+Epoch 2--- Average Loss over last 10 data points: 0.090147 ---
+Epoch 2--- Average Loss over last 10 data points: 0.089698 ---
+Epoch 2--- Average Loss over last 10 data points: 0.082359 ---
+Epoch 2--- Average Loss over last 10 data points: 0.107896 ---
+Epoch 2--- Average Loss over last 10 data points: 0.126304 ---
+Epoch 2--- Average Loss over last 10 data points: 0.106133 ---
+Epoch 2--- Average Loss over last 10 data points: 0.118651 ---
+Epoch 2--- Average Loss over last 10 data points: 0.110533 ---
+Epoch 2--- Average Loss over last 10 data points: 0.130661 ---
+Epoch 2--- Average Loss over last 10 data points: 0.098363 ---
+Epoch 2--- Average Loss over last 10 data points: 0.127162 ---
+Epoch 2--- Average Loss over last 10 data points: 0.120236 ---
+Epoch 2--- Average Loss over last 10 data points: 0.104607 ---
+Epoch 2--- Average Loss over last 10 data points: 0.106624 ---
+Epoch 2--- Average Loss over last 10 data points: 0.113494 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103795 ---
+Epoch 2--- Average Loss over last 10 data points: 0.091942 ---
+Epoch 2--- Average Loss over last 10 data points: 0.102935 ---
+Epoch 2--- Average Loss over last 10 data points: 0.099591 ---
+Epoch 2--- Average Loss over last 10 data points: 0.094955 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103914 ---
+Epoch 2--- Average Loss over last 10 data points: 0.104436 ---
+Epoch 2--- Average Loss over last 10 data points: 0.136181 ---
+Epoch 2--- Average Loss over last 10 data points: 0.080019 ---
+Epoch 2--- Average Loss over last 10 data points: 0.114112 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103923 ---
+Epoch 2--- Average Loss over last 10 data points: 0.098384 ---
+Epoch 2--- Average Loss over last 10 data points: 0.097199 ---
+Epoch 2--- Average Loss over last 10 data points: 0.089536 ---
+Epoch 2--- Average Loss over last 10 data points: 0.105428 ---
+Epoch 2--- Average Loss over last 10 data points: 0.113676 ---
+Epoch 2--- Average Loss over last 10 data points: 0.099328 ---
+Epoch 2--- Average Loss over last 10 data points: 0.085648 ---
+Epoch 2--- Average Loss over last 10 data points: 0.111603 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103151 ---
+Epoch 2--- Average Loss over last 10 data points: 0.103204 ---
+Epoch 2--- Average Loss over last 10 data points: 0.094789 ---
+Epoch 2/10, Average Training Loss: 0.106399
+Params per timestep: 55
+Validation RMSE - Y: 0.099364, Z: 0.140261, Avg: 0.119812
+Input layer weights: Parameter containing:
+tensor([[ 2.3642],
+        [ 3.1238],
+        [ 0.1765],
+        [ 2.6962],
+        [-2.4586],
+        [ 2.9936],
+        [-2.1871],
+        [-2.9068],
+        [ 0.3266],
+        [-2.4447],
+        [ 2.2179],
+        [ 2.3346],
+        [ 3.0855],
+        [ 2.5295],
+        [ 2.3784],
+        [ 1.7406],
+        [-1.0361],
+        [-1.6929],
+        [ 0.3992],
+        [-0.8260],
+        [-1.7204],
+        [ 1.6622],
+        [-2.1592],
+        [-2.2812],
+        [ 2.2098],
+        [ 0.3310],
+        [ 1.5831],
+        [-2.2942],
+        [ 3.2411],
+        [ 1.0787],
+        [ 1.0565],
+        [-1.7528],
+        [-1.6731],
+        [ 0.2593],
+        [ 1.5099],
+        [ 1.7526],
+        [-2.5344],
+        [ 2.6986],
+        [ 1.9876],
+        [-2.3264],
+        [-0.5788],
+        [-1.6039],
+        [ 1.7865],
+        [ 0.9018],
+        [ 2.8813],
+        [ 2.2510],
+        [ 1.6367],
+        [-2.1910],
+        [ 1.6129],
+        [ 3.1205],
+        [ 0.9531],
+        [ 2.4631],
+        [ 2.1313],
+        [ 2.4845],
+        [ 1.8751]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.4184,  0.3363,  1.2452,  1.4511,  0.4190, -0.3424, -0.1794,  0.9737,
+        -0.4858, -0.8188,  0.1157,  0.2248,  1.5542,  1.1926, -1.2081, -0.2810,
+         0.7380,  1.0812,  1.3074, -1.3498, -0.0690,  0.9850,  1.1389, -0.9708,
+        -1.5663, -0.6172, -0.0568,  1.3854,  0.1329, -0.6638, -0.2883, -0.5073,
+        -0.4417, -0.7261, -1.3748, -0.7347,  0.5525,  0.4577, -0.0304, -1.0544,
+        -0.7436, -1.5492, -0.2982,  0.3995, -1.4796,  1.0342,  0.4519, -0.0599,
+        -0.1660,  1.3891,  0.7369,  0.6474, -0.5284, -0.5133,  0.4603],
+       requires_grad=True)
+Epoch 3--- Average Loss over last 10 data points: 0.092359 ---
+Epoch 3--- Average Loss over last 10 data points: 0.115244 ---
+Epoch 3--- Average Loss over last 10 data points: 0.101359 ---
+Epoch 3--- Average Loss over last 10 data points: 0.098698 ---
+Epoch 3--- Average Loss over last 10 data points: 0.101214 ---
+Epoch 3--- Average Loss over last 10 data points: 0.113703 ---
+Epoch 3--- Average Loss over last 10 data points: 0.074732 ---
+Epoch 3--- Average Loss over last 10 data points: 0.088165 ---
+Epoch 3--- Average Loss over last 10 data points: 0.083812 ---
+Epoch 3--- Average Loss over last 10 data points: 0.132291 ---
+Epoch 3--- Average Loss over last 10 data points: 0.112051 ---
+Epoch 3--- Average Loss over last 10 data points: 0.076093 ---
+Epoch 3--- Average Loss over last 10 data points: 0.091536 ---
+Epoch 3--- Average Loss over last 10 data points: 0.069643 ---
+Epoch 3--- Average Loss over last 10 data points: 0.081523 ---
+Epoch 3--- Average Loss over last 10 data points: 0.110179 ---
+Epoch 3--- Average Loss over last 10 data points: 0.078799 ---
+Epoch 3--- Average Loss over last 10 data points: 0.106100 ---
+Epoch 3--- Average Loss over last 10 data points: 0.103808 ---
+Epoch 3--- Average Loss over last 10 data points: 0.105528 ---
+Epoch 3--- Average Loss over last 10 data points: 0.105605 ---
+Epoch 3--- Average Loss over last 10 data points: 0.102243 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100618 ---
+Epoch 3--- Average Loss over last 10 data points: 0.081976 ---
+Epoch 3--- Average Loss over last 10 data points: 0.086535 ---
+Epoch 3--- Average Loss over last 10 data points: 0.089514 ---
+Epoch 3--- Average Loss over last 10 data points: 0.110067 ---
+Epoch 3--- Average Loss over last 10 data points: 0.099361 ---
+Epoch 3--- Average Loss over last 10 data points: 0.109567 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096072 ---
+Epoch 3--- Average Loss over last 10 data points: 0.076049 ---
+Epoch 3--- Average Loss over last 10 data points: 0.108693 ---
+Epoch 3--- Average Loss over last 10 data points: 0.111771 ---
+Epoch 3--- Average Loss over last 10 data points: 0.129666 ---
+Epoch 3--- Average Loss over last 10 data points: 0.104199 ---
+Epoch 3--- Average Loss over last 10 data points: 0.106695 ---
+Epoch 3--- Average Loss over last 10 data points: 0.109677 ---
+Epoch 3--- Average Loss over last 10 data points: 0.085190 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100155 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096876 ---
+Epoch 3--- Average Loss over last 10 data points: 0.099515 ---
+Epoch 3--- Average Loss over last 10 data points: 0.089205 ---
+Epoch 3--- Average Loss over last 10 data points: 0.093351 ---
+Epoch 3--- Average Loss over last 10 data points: 0.085914 ---
+Epoch 3--- Average Loss over last 10 data points: 0.114001 ---
+Epoch 3--- Average Loss over last 10 data points: 0.097782 ---
+Epoch 3--- Average Loss over last 10 data points: 0.095659 ---
+Epoch 3--- Average Loss over last 10 data points: 0.106877 ---
+Epoch 3--- Average Loss over last 10 data points: 0.107473 ---
+Epoch 3--- Average Loss over last 10 data points: 0.124960 ---
+Epoch 3--- Average Loss over last 10 data points: 0.087262 ---
+Epoch 3--- Average Loss over last 10 data points: 0.113874 ---
+Epoch 3--- Average Loss over last 10 data points: 0.112950 ---
+Epoch 3--- Average Loss over last 10 data points: 0.097966 ---
+Epoch 3--- Average Loss over last 10 data points: 0.094564 ---
+Epoch 3--- Average Loss over last 10 data points: 0.104822 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100603 ---
+Epoch 3--- Average Loss over last 10 data points: 0.085018 ---
+Epoch 3--- Average Loss over last 10 data points: 0.115554 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100877 ---
+Epoch 3--- Average Loss over last 10 data points: 0.101397 ---
+Epoch 3--- Average Loss over last 10 data points: 0.091452 ---
+Epoch 3--- Average Loss over last 10 data points: 0.127732 ---
+Epoch 3--- Average Loss over last 10 data points: 0.092651 ---
+Epoch 3--- Average Loss over last 10 data points: 0.081575 ---
+Epoch 3--- Average Loss over last 10 data points: 0.087685 ---
+Epoch 3--- Average Loss over last 10 data points: 0.102937 ---
+Epoch 3--- Average Loss over last 10 data points: 0.109697 ---
+Epoch 3--- Average Loss over last 10 data points: 0.094998 ---
+Epoch 3--- Average Loss over last 10 data points: 0.115903 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096985 ---
+Epoch 3--- Average Loss over last 10 data points: 0.088670 ---
+Epoch 3--- Average Loss over last 10 data points: 0.094635 ---
+Epoch 3--- Average Loss over last 10 data points: 0.105106 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096553 ---
+Epoch 3--- Average Loss over last 10 data points: 0.104453 ---
+Epoch 3--- Average Loss over last 10 data points: 0.088210 ---
+Epoch 3--- Average Loss over last 10 data points: 0.133884 ---
+Epoch 3--- Average Loss over last 10 data points: 0.072927 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100179 ---
+Epoch 3--- Average Loss over last 10 data points: 0.115436 ---
+Epoch 3--- Average Loss over last 10 data points: 0.084851 ---
+Epoch 3--- Average Loss over last 10 data points: 0.090061 ---
+Epoch 3--- Average Loss over last 10 data points: 0.077203 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100110 ---
+Epoch 3--- Average Loss over last 10 data points: 0.076260 ---
+Epoch 3--- Average Loss over last 10 data points: 0.098694 ---
+Epoch 3--- Average Loss over last 10 data points: 0.095571 ---
+Epoch 3--- Average Loss over last 10 data points: 0.095294 ---
+Epoch 3--- Average Loss over last 10 data points: 0.074951 ---
+Epoch 3--- Average Loss over last 10 data points: 0.113811 ---
+Epoch 3--- Average Loss over last 10 data points: 0.122428 ---
+Epoch 3--- Average Loss over last 10 data points: 0.085015 ---
+Epoch 3--- Average Loss over last 10 data points: 0.107555 ---
+Epoch 3--- Average Loss over last 10 data points: 0.074968 ---
+Epoch 3--- Average Loss over last 10 data points: 0.123760 ---
+Epoch 3--- Average Loss over last 10 data points: 0.114746 ---
+Epoch 3--- Average Loss over last 10 data points: 0.095669 ---
+Epoch 3--- Average Loss over last 10 data points: 0.098324 ---
+Epoch 3--- Average Loss over last 10 data points: 0.084631 ---
+Epoch 3--- Average Loss over last 10 data points: 0.094825 ---
+Epoch 3--- Average Loss over last 10 data points: 0.082151 ---
+Epoch 3--- Average Loss over last 10 data points: 0.085396 ---
+Epoch 3--- Average Loss over last 10 data points: 0.081421 ---
+Epoch 3--- Average Loss over last 10 data points: 0.104173 ---
+Epoch 3--- Average Loss over last 10 data points: 0.122711 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100894 ---
+Epoch 3--- Average Loss over last 10 data points: 0.113588 ---
+Epoch 3--- Average Loss over last 10 data points: 0.103939 ---
+Epoch 3--- Average Loss over last 10 data points: 0.126414 ---
+Epoch 3--- Average Loss over last 10 data points: 0.091232 ---
+Epoch 3--- Average Loss over last 10 data points: 0.121023 ---
+Epoch 3--- Average Loss over last 10 data points: 0.114039 ---
+Epoch 3--- Average Loss over last 10 data points: 0.097284 ---
+Epoch 3--- Average Loss over last 10 data points: 0.103625 ---
+Epoch 3--- Average Loss over last 10 data points: 0.107123 ---
+Epoch 3--- Average Loss over last 10 data points: 0.099896 ---
+Epoch 3--- Average Loss over last 10 data points: 0.090394 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096984 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096698 ---
+Epoch 3--- Average Loss over last 10 data points: 0.092411 ---
+Epoch 3--- Average Loss over last 10 data points: 0.100631 ---
+Epoch 3--- Average Loss over last 10 data points: 0.098745 ---
+Epoch 3--- Average Loss over last 10 data points: 0.130151 ---
+Epoch 3--- Average Loss over last 10 data points: 0.082106 ---
+Epoch 3--- Average Loss over last 10 data points: 0.108264 ---
+Epoch 3--- Average Loss over last 10 data points: 0.103945 ---
+Epoch 3--- Average Loss over last 10 data points: 0.096093 ---
+Epoch 3--- Average Loss over last 10 data points: 0.091724 ---
+Epoch 3--- Average Loss over last 10 data points: 0.083410 ---
+Epoch 3--- Average Loss over last 10 data points: 0.099737 ---
+Epoch 3--- Average Loss over last 10 data points: 0.111904 ---
+Epoch 3--- Average Loss over last 10 data points: 0.094496 ---
+Epoch 3--- Average Loss over last 10 data points: 0.086148 ---
+Epoch 3--- Average Loss over last 10 data points: 0.108185 ---
+Epoch 3--- Average Loss over last 10 data points: 0.103979 ---
+Epoch 3--- Average Loss over last 10 data points: 0.102461 ---
+Epoch 3--- Average Loss over last 10 data points: 0.091936 ---
+Epoch 3/10, Average Training Loss: 0.099441
+Params per timestep: 55
+Validation RMSE - Y: 0.096422, Z: 0.139288, Avg: 0.117855
+Input layer weights: Parameter containing:
+tensor([[ 2.3769],
+        [ 3.0950],
+        [ 0.1390],
+        [ 2.7506],
+        [-2.4554],
+        [ 3.0119],
+        [-2.1990],
+        [-2.9800],
+        [ 0.3521],
+        [-2.3936],
+        [ 2.2650],
+        [ 2.3657],
+        [ 3.0391],
+        [ 2.5773],
+        [ 2.3736],
+        [ 1.6923],
+        [-0.9505],
+        [-1.6741],
+        [ 0.3922],
+        [-0.8718],
+        [-1.7632],
+        [ 1.6091],
+        [-2.1609],
+        [-2.2708],
+        [ 2.2173],
+        [ 0.3391],
+        [ 1.5947],
+        [-2.2775],
+        [ 3.2738],
+        [ 1.1033],
+        [ 1.0587],
+        [-1.7815],
+        [-1.6302],
+        [ 0.2340],
+        [ 1.5113],
+        [ 1.8245],
+        [-2.5199],
+        [ 2.7854],
+        [ 1.9421],
+        [-2.3396],
+        [-0.5937],
+        [-1.5972],
+        [ 1.7355],
+        [ 0.9096],
+        [ 2.8451],
+        [ 2.2790],
+        [ 1.6446],
+        [-2.1894],
+        [ 1.6389],
+        [ 3.1332],
+        [ 0.9855],
+        [ 2.4591],
+        [ 2.1525],
+        [ 2.4926],
+        [ 1.8026]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3867,  0.3086,  1.2260,  1.4123,  0.3931, -0.3137, -0.2171,  1.0014,
+        -0.5125, -0.7673,  0.1117,  0.2444,  1.5947,  1.2124, -1.1602, -0.3054,
+         0.6930,  1.1263,  1.2857, -1.2879, -0.0545,  1.0090,  1.1158, -0.9641,
+        -1.6112, -0.7689,  0.0044,  1.4388,  0.1183, -0.7198, -0.3482, -0.5418,
+        -0.4798, -0.7054, -1.2964, -0.6972,  0.5675,  0.4758, -0.1116, -1.0578,
+        -0.7451, -1.5734, -0.2642,  0.3887, -1.4650,  1.0463,  0.5145, -0.0540,
+        -0.1676,  1.3814,  0.7210,  0.6707, -0.4544, -0.5241,  0.4443],
+       requires_grad=True)
+Epoch 4--- Average Loss over last 10 data points: 0.092943 ---
+Epoch 4--- Average Loss over last 10 data points: 0.107664 ---
+Epoch 4--- Average Loss over last 10 data points: 0.096727 ---
+Epoch 4--- Average Loss over last 10 data points: 0.092966 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095608 ---
+Epoch 4--- Average Loss over last 10 data points: 0.110376 ---
+Epoch 4--- Average Loss over last 10 data points: 0.073681 ---
+Epoch 4--- Average Loss over last 10 data points: 0.086971 ---
+Epoch 4--- Average Loss over last 10 data points: 0.080782 ---
+Epoch 4--- Average Loss over last 10 data points: 0.128427 ---
+Epoch 4--- Average Loss over last 10 data points: 0.105819 ---
+Epoch 4--- Average Loss over last 10 data points: 0.075500 ---
+Epoch 4--- Average Loss over last 10 data points: 0.091537 ---
+Epoch 4--- Average Loss over last 10 data points: 0.065865 ---
+Epoch 4--- Average Loss over last 10 data points: 0.077879 ---
+Epoch 4--- Average Loss over last 10 data points: 0.108769 ---
+Epoch 4--- Average Loss over last 10 data points: 0.076053 ---
+Epoch 4--- Average Loss over last 10 data points: 0.104731 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099939 ---
+Epoch 4--- Average Loss over last 10 data points: 0.103172 ---
+Epoch 4--- Average Loss over last 10 data points: 0.103591 ---
+Epoch 4--- Average Loss over last 10 data points: 0.097042 ---
+Epoch 4--- Average Loss over last 10 data points: 0.096215 ---
+Epoch 4--- Average Loss over last 10 data points: 0.077644 ---
+Epoch 4--- Average Loss over last 10 data points: 0.086296 ---
+Epoch 4--- Average Loss over last 10 data points: 0.085205 ---
+Epoch 4--- Average Loss over last 10 data points: 0.108517 ---
+Epoch 4--- Average Loss over last 10 data points: 0.094833 ---
+Epoch 4--- Average Loss over last 10 data points: 0.104565 ---
+Epoch 4--- Average Loss over last 10 data points: 0.094965 ---
+Epoch 4--- Average Loss over last 10 data points: 0.072519 ---
+Epoch 4--- Average Loss over last 10 data points: 0.106652 ---
+Epoch 4--- Average Loss over last 10 data points: 0.107488 ---
+Epoch 4--- Average Loss over last 10 data points: 0.126643 ---
+Epoch 4--- Average Loss over last 10 data points: 0.103255 ---
+Epoch 4--- Average Loss over last 10 data points: 0.101306 ---
+Epoch 4--- Average Loss over last 10 data points: 0.107684 ---
+Epoch 4--- Average Loss over last 10 data points: 0.083769 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095999 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095711 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095288 ---
+Epoch 4--- Average Loss over last 10 data points: 0.086066 ---
+Epoch 4--- Average Loss over last 10 data points: 0.089372 ---
+Epoch 4--- Average Loss over last 10 data points: 0.082874 ---
+Epoch 4--- Average Loss over last 10 data points: 0.112762 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095470 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095853 ---
+Epoch 4--- Average Loss over last 10 data points: 0.103819 ---
+Epoch 4--- Average Loss over last 10 data points: 0.106239 ---
+Epoch 4--- Average Loss over last 10 data points: 0.119548 ---
+Epoch 4--- Average Loss over last 10 data points: 0.085095 ---
+Epoch 4--- Average Loss over last 10 data points: 0.108715 ---
+Epoch 4--- Average Loss over last 10 data points: 0.111202 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099017 ---
+Epoch 4--- Average Loss over last 10 data points: 0.093753 ---
+Epoch 4--- Average Loss over last 10 data points: 0.101149 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099293 ---
+Epoch 4--- Average Loss over last 10 data points: 0.083458 ---
+Epoch 4--- Average Loss over last 10 data points: 0.112932 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099841 ---
+Epoch 4--- Average Loss over last 10 data points: 0.101310 ---
+Epoch 4--- Average Loss over last 10 data points: 0.094271 ---
+Epoch 4--- Average Loss over last 10 data points: 0.122483 ---
+Epoch 4--- Average Loss over last 10 data points: 0.086267 ---
+Epoch 4--- Average Loss over last 10 data points: 0.078257 ---
+Epoch 4--- Average Loss over last 10 data points: 0.086980 ---
+Epoch 4--- Average Loss over last 10 data points: 0.102088 ---
+Epoch 4--- Average Loss over last 10 data points: 0.105384 ---
+Epoch 4--- Average Loss over last 10 data points: 0.089863 ---
+Epoch 4--- Average Loss over last 10 data points: 0.113739 ---
+Epoch 4--- Average Loss over last 10 data points: 0.092492 ---
+Epoch 4--- Average Loss over last 10 data points: 0.087835 ---
+Epoch 4--- Average Loss over last 10 data points: 0.091126 ---
+Epoch 4--- Average Loss over last 10 data points: 0.105264 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095410 ---
+Epoch 4--- Average Loss over last 10 data points: 0.102048 ---
+Epoch 4--- Average Loss over last 10 data points: 0.088323 ---
+Epoch 4--- Average Loss over last 10 data points: 0.129571 ---
+Epoch 4--- Average Loss over last 10 data points: 0.073139 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095983 ---
+Epoch 4--- Average Loss over last 10 data points: 0.111668 ---
+Epoch 4--- Average Loss over last 10 data points: 0.082529 ---
+Epoch 4--- Average Loss over last 10 data points: 0.089552 ---
+Epoch 4--- Average Loss over last 10 data points: 0.078650 ---
+Epoch 4--- Average Loss over last 10 data points: 0.094702 ---
+Epoch 4--- Average Loss over last 10 data points: 0.074983 ---
+Epoch 4--- Average Loss over last 10 data points: 0.098588 ---
+Epoch 4--- Average Loss over last 10 data points: 0.092843 ---
+Epoch 4--- Average Loss over last 10 data points: 0.094192 ---
+Epoch 4--- Average Loss over last 10 data points: 0.070484 ---
+Epoch 4--- Average Loss over last 10 data points: 0.110744 ---
+Epoch 4--- Average Loss over last 10 data points: 0.120593 ---
+Epoch 4--- Average Loss over last 10 data points: 0.083716 ---
+Epoch 4--- Average Loss over last 10 data points: 0.105571 ---
+Epoch 4--- Average Loss over last 10 data points: 0.076885 ---
+Epoch 4--- Average Loss over last 10 data points: 0.121699 ---
+Epoch 4--- Average Loss over last 10 data points: 0.113077 ---
+Epoch 4--- Average Loss over last 10 data points: 0.090981 ---
+Epoch 4--- Average Loss over last 10 data points: 0.096771 ---
+Epoch 4--- Average Loss over last 10 data points: 0.083963 ---
+Epoch 4--- Average Loss over last 10 data points: 0.092802 ---
+Epoch 4--- Average Loss over last 10 data points: 0.081225 ---
+Epoch 4--- Average Loss over last 10 data points: 0.082010 ---
+Epoch 4--- Average Loss over last 10 data points: 0.080639 ---
+Epoch 4--- Average Loss over last 10 data points: 0.100924 ---
+Epoch 4--- Average Loss over last 10 data points: 0.118796 ---
+Epoch 4--- Average Loss over last 10 data points: 0.097713 ---
+Epoch 4--- Average Loss over last 10 data points: 0.113238 ---
+Epoch 4--- Average Loss over last 10 data points: 0.101331 ---
+Epoch 4--- Average Loss over last 10 data points: 0.125990 ---
+Epoch 4--- Average Loss over last 10 data points: 0.088809 ---
+Epoch 4--- Average Loss over last 10 data points: 0.119362 ---
+Epoch 4--- Average Loss over last 10 data points: 0.109764 ---
+Epoch 4--- Average Loss over last 10 data points: 0.097808 ---
+Epoch 4--- Average Loss over last 10 data points: 0.106845 ---
+Epoch 4--- Average Loss over last 10 data points: 0.103540 ---
+Epoch 4--- Average Loss over last 10 data points: 0.096053 ---
+Epoch 4--- Average Loss over last 10 data points: 0.089236 ---
+Epoch 4--- Average Loss over last 10 data points: 0.098937 ---
+Epoch 4--- Average Loss over last 10 data points: 0.095811 ---
+Epoch 4--- Average Loss over last 10 data points: 0.087894 ---
+Epoch 4--- Average Loss over last 10 data points: 0.101978 ---
+Epoch 4--- Average Loss over last 10 data points: 0.096548 ---
+Epoch 4--- Average Loss over last 10 data points: 0.128232 ---
+Epoch 4--- Average Loss over last 10 data points: 0.081341 ---
+Epoch 4--- Average Loss over last 10 data points: 0.110366 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099605 ---
+Epoch 4--- Average Loss over last 10 data points: 0.098234 ---
+Epoch 4--- Average Loss over last 10 data points: 0.089083 ---
+Epoch 4--- Average Loss over last 10 data points: 0.081829 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099736 ---
+Epoch 4--- Average Loss over last 10 data points: 0.109947 ---
+Epoch 4--- Average Loss over last 10 data points: 0.093838 ---
+Epoch 4--- Average Loss over last 10 data points: 0.084489 ---
+Epoch 4--- Average Loss over last 10 data points: 0.106878 ---
+Epoch 4--- Average Loss over last 10 data points: 0.100580 ---
+Epoch 4--- Average Loss over last 10 data points: 0.099069 ---
+Epoch 4--- Average Loss over last 10 data points: 0.090247 ---
+Epoch 4/10, Average Training Loss: 0.097189
+Params per timestep: 55
+Validation RMSE - Y: 0.096702, Z: 0.138970, Avg: 0.117836
+Input layer weights: Parameter containing:
+tensor([[ 2.3441],
+        [ 3.0919],
+        [ 0.0717],
+        [ 2.7008],
+        [-2.4237],
+        [ 3.0226],
+        [-2.2015],
+        [-2.9704],
+        [ 0.4172],
+        [-2.3848],
+        [ 2.2911],
+        [ 2.4381],
+        [ 3.0140],
+        [ 2.6129],
+        [ 2.4264],
+        [ 1.7295],
+        [-0.9064],
+        [-1.5904],
+        [ 0.4579],
+        [-0.8770],
+        [-1.8141],
+        [ 1.6490],
+        [-2.1085],
+        [-2.2274],
+        [ 2.2431],
+        [ 0.3131],
+        [ 1.6596],
+        [-2.2695],
+        [ 3.2596],
+        [ 1.0493],
+        [ 1.0554],
+        [-1.7529],
+        [-1.6402],
+        [ 0.1989],
+        [ 1.5298],
+        [ 1.8121],
+        [-2.4866],
+        [ 2.7743],
+        [ 1.8906],
+        [-2.3190],
+        [-0.6112],
+        [-1.5903],
+        [ 1.7048],
+        [ 0.9441],
+        [ 2.9019],
+        [ 2.2626],
+        [ 1.5712],
+        [-2.2611],
+        [ 1.6830],
+        [ 3.1853],
+        [ 0.9788],
+        [ 2.4358],
+        [ 2.1115],
+        [ 2.4900],
+        [ 1.8225]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3583,  0.3024,  1.2640,  1.3917,  0.3628, -0.3350, -0.3274,  0.9621,
+        -0.5191, -0.7775,  0.1114,  0.2737,  1.5613,  1.2070, -1.0486, -0.3054,
+         0.6282,  1.1332,  1.2866, -1.2749, -0.0208,  0.9910,  1.1066, -0.9488,
+        -1.6697, -0.7987,  0.0348,  1.3731,  0.1643, -0.7508, -0.3812, -0.5455,
+        -0.5095, -0.7288, -1.3404, -0.6701,  0.5113,  0.4729, -0.1451, -1.0856,
+        -0.7622, -1.5880, -0.2513,  0.3938, -1.4659,  1.0447,  0.5277, -0.0779,
+        -0.1508,  1.3528,  0.6894,  0.7063, -0.3962, -0.5543,  0.4255],
+       requires_grad=True)
+Epoch 5--- Average Loss over last 10 data points: 0.090855 ---
+Epoch 5--- Average Loss over last 10 data points: 0.107641 ---
+Epoch 5--- Average Loss over last 10 data points: 0.096140 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091005 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093035 ---
+Epoch 5--- Average Loss over last 10 data points: 0.108252 ---
+Epoch 5--- Average Loss over last 10 data points: 0.073052 ---
+Epoch 5--- Average Loss over last 10 data points: 0.085675 ---
+Epoch 5--- Average Loss over last 10 data points: 0.079784 ---
+Epoch 5--- Average Loss over last 10 data points: 0.126031 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105912 ---
+Epoch 5--- Average Loss over last 10 data points: 0.073464 ---
+Epoch 5--- Average Loss over last 10 data points: 0.088646 ---
+Epoch 5--- Average Loss over last 10 data points: 0.063097 ---
+Epoch 5--- Average Loss over last 10 data points: 0.075904 ---
+Epoch 5--- Average Loss over last 10 data points: 0.106717 ---
+Epoch 5--- Average Loss over last 10 data points: 0.075190 ---
+Epoch 5--- Average Loss over last 10 data points: 0.102829 ---
+Epoch 5--- Average Loss over last 10 data points: 0.098021 ---
+Epoch 5--- Average Loss over last 10 data points: 0.100775 ---
+Epoch 5--- Average Loss over last 10 data points: 0.102153 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095770 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093130 ---
+Epoch 5--- Average Loss over last 10 data points: 0.073060 ---
+Epoch 5--- Average Loss over last 10 data points: 0.082330 ---
+Epoch 5--- Average Loss over last 10 data points: 0.086686 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101767 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092574 ---
+Epoch 5--- Average Loss over last 10 data points: 0.104055 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091676 ---
+Epoch 5--- Average Loss over last 10 data points: 0.072636 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105410 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105759 ---
+Epoch 5--- Average Loss over last 10 data points: 0.125371 ---
+Epoch 5--- Average Loss over last 10 data points: 0.100353 ---
+Epoch 5--- Average Loss over last 10 data points: 0.098309 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105808 ---
+Epoch 5--- Average Loss over last 10 data points: 0.082706 ---
+Epoch 5--- Average Loss over last 10 data points: 0.097209 ---
+Epoch 5--- Average Loss over last 10 data points: 0.094828 ---
+Epoch 5--- Average Loss over last 10 data points: 0.094086 ---
+Epoch 5--- Average Loss over last 10 data points: 0.085343 ---
+Epoch 5--- Average Loss over last 10 data points: 0.089466 ---
+Epoch 5--- Average Loss over last 10 data points: 0.085187 ---
+Epoch 5--- Average Loss over last 10 data points: 0.110254 ---
+Epoch 5--- Average Loss over last 10 data points: 0.090159 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093609 ---
+Epoch 5--- Average Loss over last 10 data points: 0.099936 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105515 ---
+Epoch 5--- Average Loss over last 10 data points: 0.119301 ---
+Epoch 5--- Average Loss over last 10 data points: 0.083785 ---
+Epoch 5--- Average Loss over last 10 data points: 0.107524 ---
+Epoch 5--- Average Loss over last 10 data points: 0.109573 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092167 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091852 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101406 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095483 ---
+Epoch 5--- Average Loss over last 10 data points: 0.082804 ---
+Epoch 5--- Average Loss over last 10 data points: 0.112484 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095407 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101031 ---
+Epoch 5--- Average Loss over last 10 data points: 0.090001 ---
+Epoch 5--- Average Loss over last 10 data points: 0.124511 ---
+Epoch 5--- Average Loss over last 10 data points: 0.086851 ---
+Epoch 5--- Average Loss over last 10 data points: 0.079236 ---
+Epoch 5--- Average Loss over last 10 data points: 0.084202 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101807 ---
+Epoch 5--- Average Loss over last 10 data points: 0.102185 ---
+Epoch 5--- Average Loss over last 10 data points: 0.089661 ---
+Epoch 5--- Average Loss over last 10 data points: 0.112973 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092692 ---
+Epoch 5--- Average Loss over last 10 data points: 0.084358 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091036 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101859 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093219 ---
+Epoch 5--- Average Loss over last 10 data points: 0.102843 ---
+Epoch 5--- Average Loss over last 10 data points: 0.088218 ---
+Epoch 5--- Average Loss over last 10 data points: 0.126898 ---
+Epoch 5--- Average Loss over last 10 data points: 0.072822 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091716 ---
+Epoch 5--- Average Loss over last 10 data points: 0.108376 ---
+Epoch 5--- Average Loss over last 10 data points: 0.080300 ---
+Epoch 5--- Average Loss over last 10 data points: 0.087775 ---
+Epoch 5--- Average Loss over last 10 data points: 0.074451 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095007 ---
+Epoch 5--- Average Loss over last 10 data points: 0.070962 ---
+Epoch 5--- Average Loss over last 10 data points: 0.096603 ---
+Epoch 5--- Average Loss over last 10 data points: 0.091712 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092095 ---
+Epoch 5--- Average Loss over last 10 data points: 0.069508 ---
+Epoch 5--- Average Loss over last 10 data points: 0.107327 ---
+Epoch 5--- Average Loss over last 10 data points: 0.116611 ---
+Epoch 5--- Average Loss over last 10 data points: 0.081300 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101165 ---
+Epoch 5--- Average Loss over last 10 data points: 0.073512 ---
+Epoch 5--- Average Loss over last 10 data points: 0.119927 ---
+Epoch 5--- Average Loss over last 10 data points: 0.110308 ---
+Epoch 5--- Average Loss over last 10 data points: 0.090210 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093124 ---
+Epoch 5--- Average Loss over last 10 data points: 0.078036 ---
+Epoch 5--- Average Loss over last 10 data points: 0.089156 ---
+Epoch 5--- Average Loss over last 10 data points: 0.080307 ---
+Epoch 5--- Average Loss over last 10 data points: 0.079719 ---
+Epoch 5--- Average Loss over last 10 data points: 0.075601 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101111 ---
+Epoch 5--- Average Loss over last 10 data points: 0.115346 ---
+Epoch 5--- Average Loss over last 10 data points: 0.097130 ---
+Epoch 5--- Average Loss over last 10 data points: 0.112403 ---
+Epoch 5--- Average Loss over last 10 data points: 0.098361 ---
+Epoch 5--- Average Loss over last 10 data points: 0.122426 ---
+Epoch 5--- Average Loss over last 10 data points: 0.089453 ---
+Epoch 5--- Average Loss over last 10 data points: 0.116214 ---
+Epoch 5--- Average Loss over last 10 data points: 0.111206 ---
+Epoch 5--- Average Loss over last 10 data points: 0.094990 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101464 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105226 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092391 ---
+Epoch 5--- Average Loss over last 10 data points: 0.086825 ---
+Epoch 5--- Average Loss over last 10 data points: 0.093834 ---
+Epoch 5--- Average Loss over last 10 data points: 0.092478 ---
+Epoch 5--- Average Loss over last 10 data points: 0.088648 ---
+Epoch 5--- Average Loss over last 10 data points: 0.101601 ---
+Epoch 5--- Average Loss over last 10 data points: 0.090718 ---
+Epoch 5--- Average Loss over last 10 data points: 0.124899 ---
+Epoch 5--- Average Loss over last 10 data points: 0.081784 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105694 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095283 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095917 ---
+Epoch 5--- Average Loss over last 10 data points: 0.086213 ---
+Epoch 5--- Average Loss over last 10 data points: 0.080938 ---
+Epoch 5--- Average Loss over last 10 data points: 0.096625 ---
+Epoch 5--- Average Loss over last 10 data points: 0.110472 ---
+Epoch 5--- Average Loss over last 10 data points: 0.090919 ---
+Epoch 5--- Average Loss over last 10 data points: 0.082682 ---
+Epoch 5--- Average Loss over last 10 data points: 0.105281 ---
+Epoch 5--- Average Loss over last 10 data points: 0.095445 ---
+Epoch 5--- Average Loss over last 10 data points: 0.099132 ---
+Epoch 5--- Average Loss over last 10 data points: 0.088609 ---
+Epoch 5/10, Average Training Loss: 0.095229
+Params per timestep: 55
+Validation RMSE - Y: 0.096319, Z: 0.139712, Avg: 0.118016
+Input layer weights: Parameter containing:
+tensor([[ 2.3313],
+        [ 3.1106],
+        [ 0.0634],
+        [ 2.7000],
+        [-2.4461],
+        [ 3.1054],
+        [-2.2328],
+        [-3.0278],
+        [ 0.3908],
+        [-2.3847],
+        [ 2.3279],
+        [ 2.5000],
+        [ 2.9620],
+        [ 2.6523],
+        [ 2.4659],
+        [ 1.7646],
+        [-0.9006],
+        [-1.5544],
+        [ 0.3890],
+        [-0.8603],
+        [-1.7804],
+        [ 1.6802],
+        [-2.1292],
+        [-2.1935],
+        [ 2.2022],
+        [ 0.2840],
+        [ 1.7189],
+        [-2.2653],
+        [ 3.3124],
+        [ 1.0454],
+        [ 1.0462],
+        [-1.7712],
+        [-1.6976],
+        [ 0.1940],
+        [ 1.6120],
+        [ 1.8207],
+        [-2.5405],
+        [ 2.8244],
+        [ 1.8879],
+        [-2.3054],
+        [-0.6513],
+        [-1.5983],
+        [ 1.7166],
+        [ 0.9633],
+        [ 2.9045],
+        [ 2.2658],
+        [ 1.5436],
+        [-2.2441],
+        [ 1.6961],
+        [ 3.1920],
+        [ 1.0013],
+        [ 2.4854],
+        [ 2.1876],
+        [ 2.4448],
+        [ 1.8252]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.2827,  0.2686,  1.2388,  1.4638,  0.3498, -0.3028, -0.3919,  0.8875,
+        -0.5515, -0.7724,  0.1199,  0.2895,  1.5353,  1.2057, -0.9663, -0.2951,
+         0.5678,  1.1495,  1.2976, -1.2921, -0.0910,  0.9476,  1.1085, -0.9163,
+        -1.7488, -0.8380,  0.0501,  1.3833,  0.1784, -0.7636, -0.3826, -0.6075,
+        -0.4503, -0.7849, -1.2720, -0.6319,  0.4420,  0.5527, -0.1113, -1.1865,
+        -0.7388, -1.6186, -0.2188,  0.4066, -1.4858,  1.0676,  0.4920, -0.0888,
+        -0.2018,  1.3283,  0.7035,  0.6965, -0.3693, -0.5643,  0.4279],
+       requires_grad=True)
+Epoch 6--- Average Loss over last 10 data points: 0.091133 ---
+Epoch 6--- Average Loss over last 10 data points: 0.105734 ---
+Epoch 6--- Average Loss over last 10 data points: 0.094132 ---
+Epoch 6--- Average Loss over last 10 data points: 0.090838 ---
+Epoch 6--- Average Loss over last 10 data points: 0.091026 ---
+Epoch 6--- Average Loss over last 10 data points: 0.105808 ---
+Epoch 6--- Average Loss over last 10 data points: 0.068461 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081846 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081389 ---
+Epoch 6--- Average Loss over last 10 data points: 0.123544 ---
+Epoch 6--- Average Loss over last 10 data points: 0.102603 ---
+Epoch 6--- Average Loss over last 10 data points: 0.075947 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088474 ---
+Epoch 6--- Average Loss over last 10 data points: 0.061549 ---
+Epoch 6--- Average Loss over last 10 data points: 0.074836 ---
+Epoch 6--- Average Loss over last 10 data points: 0.105442 ---
+Epoch 6--- Average Loss over last 10 data points: 0.074078 ---
+Epoch 6--- Average Loss over last 10 data points: 0.100873 ---
+Epoch 6--- Average Loss over last 10 data points: 0.094518 ---
+Epoch 6--- Average Loss over last 10 data points: 0.097455 ---
+Epoch 6--- Average Loss over last 10 data points: 0.100633 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092534 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092752 ---
+Epoch 6--- Average Loss over last 10 data points: 0.073587 ---
+Epoch 6--- Average Loss over last 10 data points: 0.082176 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085132 ---
+Epoch 6--- Average Loss over last 10 data points: 0.099319 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092422 ---
+Epoch 6--- Average Loss over last 10 data points: 0.101904 ---
+Epoch 6--- Average Loss over last 10 data points: 0.087863 ---
+Epoch 6--- Average Loss over last 10 data points: 0.074028 ---
+Epoch 6--- Average Loss over last 10 data points: 0.101638 ---
+Epoch 6--- Average Loss over last 10 data points: 0.100998 ---
+Epoch 6--- Average Loss over last 10 data points: 0.122575 ---
+Epoch 6--- Average Loss over last 10 data points: 0.097038 ---
+Epoch 6--- Average Loss over last 10 data points: 0.093549 ---
+Epoch 6--- Average Loss over last 10 data points: 0.106857 ---
+Epoch 6--- Average Loss over last 10 data points: 0.077711 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088468 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089350 ---
+Epoch 6--- Average Loss over last 10 data points: 0.090853 ---
+Epoch 6--- Average Loss over last 10 data points: 0.084800 ---
+Epoch 6--- Average Loss over last 10 data points: 0.087085 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081738 ---
+Epoch 6--- Average Loss over last 10 data points: 0.109023 ---
+Epoch 6--- Average Loss over last 10 data points: 0.087918 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092567 ---
+Epoch 6--- Average Loss over last 10 data points: 0.093634 ---
+Epoch 6--- Average Loss over last 10 data points: 0.104468 ---
+Epoch 6--- Average Loss over last 10 data points: 0.115350 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081258 ---
+Epoch 6--- Average Loss over last 10 data points: 0.103782 ---
+Epoch 6--- Average Loss over last 10 data points: 0.108547 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092667 ---
+Epoch 6--- Average Loss over last 10 data points: 0.090650 ---
+Epoch 6--- Average Loss over last 10 data points: 0.098060 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089648 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079010 ---
+Epoch 6--- Average Loss over last 10 data points: 0.110085 ---
+Epoch 6--- Average Loss over last 10 data points: 0.096600 ---
+Epoch 6--- Average Loss over last 10 data points: 0.093870 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085557 ---
+Epoch 6--- Average Loss over last 10 data points: 0.120631 ---
+Epoch 6--- Average Loss over last 10 data points: 0.084270 ---
+Epoch 6--- Average Loss over last 10 data points: 0.076364 ---
+Epoch 6--- Average Loss over last 10 data points: 0.080801 ---
+Epoch 6--- Average Loss over last 10 data points: 0.093733 ---
+Epoch 6--- Average Loss over last 10 data points: 0.098663 ---
+Epoch 6--- Average Loss over last 10 data points: 0.086870 ---
+Epoch 6--- Average Loss over last 10 data points: 0.108925 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092950 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079287 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085516 ---
+Epoch 6--- Average Loss over last 10 data points: 0.099868 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092316 ---
+Epoch 6--- Average Loss over last 10 data points: 0.098749 ---
+Epoch 6--- Average Loss over last 10 data points: 0.087758 ---
+Epoch 6--- Average Loss over last 10 data points: 0.121925 ---
+Epoch 6--- Average Loss over last 10 data points: 0.071142 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089295 ---
+Epoch 6--- Average Loss over last 10 data points: 0.103796 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079540 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079955 ---
+Epoch 6--- Average Loss over last 10 data points: 0.073294 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089938 ---
+Epoch 6--- Average Loss over last 10 data points: 0.068795 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088602 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088953 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088067 ---
+Epoch 6--- Average Loss over last 10 data points: 0.067270 ---
+Epoch 6--- Average Loss over last 10 data points: 0.106701 ---
+Epoch 6--- Average Loss over last 10 data points: 0.114904 ---
+Epoch 6--- Average Loss over last 10 data points: 0.082390 ---
+Epoch 6--- Average Loss over last 10 data points: 0.100045 ---
+Epoch 6--- Average Loss over last 10 data points: 0.071881 ---
+Epoch 6--- Average Loss over last 10 data points: 0.119383 ---
+Epoch 6--- Average Loss over last 10 data points: 0.107564 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088751 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085668 ---
+Epoch 6--- Average Loss over last 10 data points: 0.076180 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089269 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079069 ---
+Epoch 6--- Average Loss over last 10 data points: 0.078158 ---
+Epoch 6--- Average Loss over last 10 data points: 0.077563 ---
+Epoch 6--- Average Loss over last 10 data points: 0.098269 ---
+Epoch 6--- Average Loss over last 10 data points: 0.110679 ---
+Epoch 6--- Average Loss over last 10 data points: 0.091812 ---
+Epoch 6--- Average Loss over last 10 data points: 0.111780 ---
+Epoch 6--- Average Loss over last 10 data points: 0.097771 ---
+Epoch 6--- Average Loss over last 10 data points: 0.117767 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085502 ---
+Epoch 6--- Average Loss over last 10 data points: 0.114638 ---
+Epoch 6--- Average Loss over last 10 data points: 0.108398 ---
+Epoch 6--- Average Loss over last 10 data points: 0.089421 ---
+Epoch 6--- Average Loss over last 10 data points: 0.098653 ---
+Epoch 6--- Average Loss over last 10 data points: 0.102004 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092238 ---
+Epoch 6--- Average Loss over last 10 data points: 0.080779 ---
+Epoch 6--- Average Loss over last 10 data points: 0.086906 ---
+Epoch 6--- Average Loss over last 10 data points: 0.085914 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088011 ---
+Epoch 6--- Average Loss over last 10 data points: 0.101692 ---
+Epoch 6--- Average Loss over last 10 data points: 0.088802 ---
+Epoch 6--- Average Loss over last 10 data points: 0.119880 ---
+Epoch 6--- Average Loss over last 10 data points: 0.076942 ---
+Epoch 6--- Average Loss over last 10 data points: 0.104350 ---
+Epoch 6--- Average Loss over last 10 data points: 0.092472 ---
+Epoch 6--- Average Loss over last 10 data points: 0.091964 ---
+Epoch 6--- Average Loss over last 10 data points: 0.079563 ---
+Epoch 6--- Average Loss over last 10 data points: 0.080349 ---
+Epoch 6--- Average Loss over last 10 data points: 0.091670 ---
+Epoch 6--- Average Loss over last 10 data points: 0.104546 ---
+Epoch 6--- Average Loss over last 10 data points: 0.086769 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081708 ---
+Epoch 6--- Average Loss over last 10 data points: 0.101749 ---
+Epoch 6--- Average Loss over last 10 data points: 0.094593 ---
+Epoch 6--- Average Loss over last 10 data points: 0.093600 ---
+Epoch 6--- Average Loss over last 10 data points: 0.081617 ---
+Epoch 6/10, Average Training Loss: 0.092500
+Params per timestep: 55
+Validation RMSE - Y: 0.096393, Z: 0.141966, Avg: 0.119179
+Input layer weights: Parameter containing:
+tensor([[ 2.2906],
+        [ 3.0599],
+        [-0.0578],
+        [ 2.6821],
+        [-2.4936],
+        [ 3.1776],
+        [-2.3272],
+        [-3.0550],
+        [ 0.3583],
+        [-2.4266],
+        [ 2.3662],
+        [ 2.5312],
+        [ 2.9463],
+        [ 2.6798],
+        [ 2.4221],
+        [ 1.7308],
+        [-0.8364],
+        [-1.5233],
+        [ 0.3787],
+        [-0.8768],
+        [-1.7832],
+        [ 1.6635],
+        [-2.1206],
+        [-2.2493],
+        [ 2.2661],
+        [ 0.2027],
+        [ 1.7739],
+        [-2.2355],
+        [ 3.2478],
+        [ 1.0675],
+        [ 0.9631],
+        [-1.8387],
+        [-1.7299],
+        [ 0.1621],
+        [ 1.6096],
+        [ 1.8017],
+        [-2.5717],
+        [ 2.8239],
+        [ 1.9620],
+        [-2.2411],
+        [-0.6536],
+        [-1.5893],
+        [ 1.6791],
+        [ 0.9399],
+        [ 2.8866],
+        [ 2.2400],
+        [ 1.5643],
+        [-2.2891],
+        [ 1.7294],
+        [ 3.1300],
+        [ 0.9566],
+        [ 2.4917],
+        [ 2.1813],
+        [ 2.4623],
+        [ 1.8261]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3037,  0.2398,  1.2295,  1.4153,  0.3373, -0.3300, -0.4926,  0.8642,
+        -0.5453, -0.7469,  0.1275,  0.3166,  1.6009,  1.1947, -0.9607, -0.3293,
+         0.5407,  1.1107,  1.3230, -1.2902, -0.1187,  0.9438,  1.1284, -0.9369,
+        -1.8114, -0.7929,  0.0869,  1.4161,  0.1160, -0.7165, -0.3771, -0.6461,
+        -0.4770, -0.8428, -1.2268, -0.5817,  0.4589,  0.5443, -0.1505, -1.2522,
+        -0.7374, -1.6328, -0.2111,  0.4727, -1.4621,  1.0570,  0.4776, -0.0384,
+        -0.2311,  1.3310,  0.7024,  0.7706, -0.3663, -0.5717,  0.4183],
+       requires_grad=True)
+Epoch 7--- Average Loss over last 10 data points: 0.085795 ---
+Epoch 7--- Average Loss over last 10 data points: 0.100447 ---
+Epoch 7--- Average Loss over last 10 data points: 0.089941 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086884 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083923 ---
+Epoch 7--- Average Loss over last 10 data points: 0.101067 ---
+Epoch 7--- Average Loss over last 10 data points: 0.067263 ---
+Epoch 7--- Average Loss over last 10 data points: 0.084287 ---
+Epoch 7--- Average Loss over last 10 data points: 0.080277 ---
+Epoch 7--- Average Loss over last 10 data points: 0.119426 ---
+Epoch 7--- Average Loss over last 10 data points: 0.101803 ---
+Epoch 7--- Average Loss over last 10 data points: 0.073003 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083953 ---
+Epoch 7--- Average Loss over last 10 data points: 0.059467 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076579 ---
+Epoch 7--- Average Loss over last 10 data points: 0.103562 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075995 ---
+Epoch 7--- Average Loss over last 10 data points: 0.096317 ---
+Epoch 7--- Average Loss over last 10 data points: 0.091070 ---
+Epoch 7--- Average Loss over last 10 data points: 0.096818 ---
+Epoch 7--- Average Loss over last 10 data points: 0.099701 ---
+Epoch 7--- Average Loss over last 10 data points: 0.085721 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086058 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075869 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076018 ---
+Epoch 7--- Average Loss over last 10 data points: 0.080764 ---
+Epoch 7--- Average Loss over last 10 data points: 0.095757 ---
+Epoch 7--- Average Loss over last 10 data points: 0.089371 ---
+Epoch 7--- Average Loss over last 10 data points: 0.101278 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086573 ---
+Epoch 7--- Average Loss over last 10 data points: 0.074431 ---
+Epoch 7--- Average Loss over last 10 data points: 0.099041 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093625 ---
+Epoch 7--- Average Loss over last 10 data points: 0.119539 ---
+Epoch 7--- Average Loss over last 10 data points: 0.094214 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093864 ---
+Epoch 7--- Average Loss over last 10 data points: 0.102748 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076616 ---
+Epoch 7--- Average Loss over last 10 data points: 0.090627 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088593 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086033 ---
+Epoch 7--- Average Loss over last 10 data points: 0.084096 ---
+Epoch 7--- Average Loss over last 10 data points: 0.084052 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083143 ---
+Epoch 7--- Average Loss over last 10 data points: 0.107319 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088127 ---
+Epoch 7--- Average Loss over last 10 data points: 0.087207 ---
+Epoch 7--- Average Loss over last 10 data points: 0.089111 ---
+Epoch 7--- Average Loss over last 10 data points: 0.103117 ---
+Epoch 7--- Average Loss over last 10 data points: 0.113870 ---
+Epoch 7--- Average Loss over last 10 data points: 0.080799 ---
+Epoch 7--- Average Loss over last 10 data points: 0.099895 ---
+Epoch 7--- Average Loss over last 10 data points: 0.109002 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093498 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088836 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093432 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088484 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075255 ---
+Epoch 7--- Average Loss over last 10 data points: 0.107129 ---
+Epoch 7--- Average Loss over last 10 data points: 0.090985 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086182 ---
+Epoch 7--- Average Loss over last 10 data points: 0.082812 ---
+Epoch 7--- Average Loss over last 10 data points: 0.120315 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083826 ---
+Epoch 7--- Average Loss over last 10 data points: 0.072609 ---
+Epoch 7--- Average Loss over last 10 data points: 0.077697 ---
+Epoch 7--- Average Loss over last 10 data points: 0.090770 ---
+Epoch 7--- Average Loss over last 10 data points: 0.095318 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083638 ---
+Epoch 7--- Average Loss over last 10 data points: 0.103899 ---
+Epoch 7--- Average Loss over last 10 data points: 0.090391 ---
+Epoch 7--- Average Loss over last 10 data points: 0.077219 ---
+Epoch 7--- Average Loss over last 10 data points: 0.084170 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093181 ---
+Epoch 7--- Average Loss over last 10 data points: 0.091113 ---
+Epoch 7--- Average Loss over last 10 data points: 0.097136 ---
+Epoch 7--- Average Loss over last 10 data points: 0.089514 ---
+Epoch 7--- Average Loss over last 10 data points: 0.113414 ---
+Epoch 7--- Average Loss over last 10 data points: 0.072997 ---
+Epoch 7--- Average Loss over last 10 data points: 0.085825 ---
+Epoch 7--- Average Loss over last 10 data points: 0.100232 ---
+Epoch 7--- Average Loss over last 10 data points: 0.077113 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076798 ---
+Epoch 7--- Average Loss over last 10 data points: 0.069034 ---
+Epoch 7--- Average Loss over last 10 data points: 0.087096 ---
+Epoch 7--- Average Loss over last 10 data points: 0.071270 ---
+Epoch 7--- Average Loss over last 10 data points: 0.083728 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088376 ---
+Epoch 7--- Average Loss over last 10 data points: 0.087575 ---
+Epoch 7--- Average Loss over last 10 data points: 0.065487 ---
+Epoch 7--- Average Loss over last 10 data points: 0.101028 ---
+Epoch 7--- Average Loss over last 10 data points: 0.113182 ---
+Epoch 7--- Average Loss over last 10 data points: 0.082682 ---
+Epoch 7--- Average Loss over last 10 data points: 0.099330 ---
+Epoch 7--- Average Loss over last 10 data points: 0.073888 ---
+Epoch 7--- Average Loss over last 10 data points: 0.117776 ---
+Epoch 7--- Average Loss over last 10 data points: 0.106553 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088603 ---
+Epoch 7--- Average Loss over last 10 data points: 0.079742 ---
+Epoch 7--- Average Loss over last 10 data points: 0.071442 ---
+Epoch 7--- Average Loss over last 10 data points: 0.086864 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075249 ---
+Epoch 7--- Average Loss over last 10 data points: 0.077018 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075745 ---
+Epoch 7--- Average Loss over last 10 data points: 0.094573 ---
+Epoch 7--- Average Loss over last 10 data points: 0.103871 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088467 ---
+Epoch 7--- Average Loss over last 10 data points: 0.106514 ---
+Epoch 7--- Average Loss over last 10 data points: 0.096053 ---
+Epoch 7--- Average Loss over last 10 data points: 0.116506 ---
+Epoch 7--- Average Loss over last 10 data points: 0.082672 ---
+Epoch 7--- Average Loss over last 10 data points: 0.111085 ---
+Epoch 7--- Average Loss over last 10 data points: 0.106876 ---
+Epoch 7--- Average Loss over last 10 data points: 0.087410 ---
+Epoch 7--- Average Loss over last 10 data points: 0.094565 ---
+Epoch 7--- Average Loss over last 10 data points: 0.096936 ---
+Epoch 7--- Average Loss over last 10 data points: 0.091895 ---
+Epoch 7--- Average Loss over last 10 data points: 0.080659 ---
+Epoch 7--- Average Loss over last 10 data points: 0.081006 ---
+Epoch 7--- Average Loss over last 10 data points: 0.081555 ---
+Epoch 7--- Average Loss over last 10 data points: 0.090785 ---
+Epoch 7--- Average Loss over last 10 data points: 0.098247 ---
+Epoch 7--- Average Loss over last 10 data points: 0.084451 ---
+Epoch 7--- Average Loss over last 10 data points: 0.115400 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076553 ---
+Epoch 7--- Average Loss over last 10 data points: 0.101444 ---
+Epoch 7--- Average Loss over last 10 data points: 0.087291 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088539 ---
+Epoch 7--- Average Loss over last 10 data points: 0.077692 ---
+Epoch 7--- Average Loss over last 10 data points: 0.075074 ---
+Epoch 7--- Average Loss over last 10 data points: 0.088734 ---
+Epoch 7--- Average Loss over last 10 data points: 0.099596 ---
+Epoch 7--- Average Loss over last 10 data points: 0.081389 ---
+Epoch 7--- Average Loss over last 10 data points: 0.076453 ---
+Epoch 7--- Average Loss over last 10 data points: 0.097151 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093234 ---
+Epoch 7--- Average Loss over last 10 data points: 0.093871 ---
+Epoch 7--- Average Loss over last 10 data points: 0.082197 ---
+Epoch 7/10, Average Training Loss: 0.089905
+Params per timestep: 55
+Validation RMSE - Y: 0.095870, Z: 0.145967, Avg: 0.120919
+Input layer weights: Parameter containing:
+tensor([[ 2.2624],
+        [ 3.0263],
+        [-0.0911],
+        [ 2.7218],
+        [-2.5150],
+        [ 3.2618],
+        [-2.4118],
+        [-3.0309],
+        [ 0.3333],
+        [-2.4295],
+        [ 2.4023],
+        [ 2.5531],
+        [ 2.9285],
+        [ 2.6601],
+        [ 2.4545],
+        [ 1.7838],
+        [-0.8357],
+        [-1.4651],
+        [ 0.3509],
+        [-0.8743],
+        [-1.7824],
+        [ 1.5910],
+        [-2.1297],
+        [-2.2775],
+        [ 2.1990],
+        [ 0.1964],
+        [ 1.8105],
+        [-2.2304],
+        [ 3.2394],
+        [ 1.0507],
+        [ 0.9460],
+        [-1.8430],
+        [-1.7688],
+        [ 0.1642],
+        [ 1.5972],
+        [ 1.7788],
+        [-2.5623],
+        [ 2.7957],
+        [ 2.0126],
+        [-2.3389],
+        [-0.6318],
+        [-1.5877],
+        [ 1.7325],
+        [ 0.9821],
+        [ 2.8464],
+        [ 2.2394],
+        [ 1.5358],
+        [-2.3279],
+        [ 1.7061],
+        [ 3.1735],
+        [ 0.9829],
+        [ 2.4841],
+        [ 2.1348],
+        [ 2.4240],
+        [ 1.8126]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3521,  0.2261,  1.1950,  1.4405,  0.3361, -0.2420, -0.5417,  0.8504,
+        -0.5701, -0.6747,  0.1489,  0.3760,  1.6276,  1.1888, -1.0150, -0.3406,
+         0.4911,  1.0707,  1.3433, -1.3178, -0.0659,  0.9300,  1.1244, -0.9188,
+        -1.8500, -0.7496,  0.0943,  1.4537,  0.0636, -0.6973, -0.4097, -0.7267,
+        -0.4661, -0.8159, -1.1979, -0.5749,  0.4259,  0.5528, -0.2262, -1.3524,
+        -0.7265, -1.6469, -0.3023,  0.4415, -1.4074,  1.1299,  0.4775, -0.0390,
+        -0.1829,  1.2921,  0.6877,  0.8126, -0.3008, -0.5754,  0.4461],
+       requires_grad=True)
+Epoch 8--- Average Loss over last 10 data points: 0.083949 ---
+Epoch 8--- Average Loss over last 10 data points: 0.097721 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085432 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083735 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085517 ---
+Epoch 8--- Average Loss over last 10 data points: 0.100059 ---
+Epoch 8--- Average Loss over last 10 data points: 0.065528 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083509 ---
+Epoch 8--- Average Loss over last 10 data points: 0.081234 ---
+Epoch 8--- Average Loss over last 10 data points: 0.117043 ---
+Epoch 8--- Average Loss over last 10 data points: 0.097830 ---
+Epoch 8--- Average Loss over last 10 data points: 0.069682 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083824 ---
+Epoch 8--- Average Loss over last 10 data points: 0.056807 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073091 ---
+Epoch 8--- Average Loss over last 10 data points: 0.103804 ---
+Epoch 8--- Average Loss over last 10 data points: 0.076482 ---
+Epoch 8--- Average Loss over last 10 data points: 0.097658 ---
+Epoch 8--- Average Loss over last 10 data points: 0.089356 ---
+Epoch 8--- Average Loss over last 10 data points: 0.093540 ---
+Epoch 8--- Average Loss over last 10 data points: 0.096506 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077907 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086609 ---
+Epoch 8--- Average Loss over last 10 data points: 0.074669 ---
+Epoch 8--- Average Loss over last 10 data points: 0.074862 ---
+Epoch 8--- Average Loss over last 10 data points: 0.075879 ---
+Epoch 8--- Average Loss over last 10 data points: 0.092590 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083197 ---
+Epoch 8--- Average Loss over last 10 data points: 0.099136 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077691 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073619 ---
+Epoch 8--- Average Loss over last 10 data points: 0.094252 ---
+Epoch 8--- Average Loss over last 10 data points: 0.087745 ---
+Epoch 8--- Average Loss over last 10 data points: 0.111886 ---
+Epoch 8--- Average Loss over last 10 data points: 0.090361 ---
+Epoch 8--- Average Loss over last 10 data points: 0.092607 ---
+Epoch 8--- Average Loss over last 10 data points: 0.099735 ---
+Epoch 8--- Average Loss over last 10 data points: 0.071827 ---
+Epoch 8--- Average Loss over last 10 data points: 0.090249 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085241 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086864 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083349 ---
+Epoch 8--- Average Loss over last 10 data points: 0.080163 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086364 ---
+Epoch 8--- Average Loss over last 10 data points: 0.104755 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086162 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086774 ---
+Epoch 8--- Average Loss over last 10 data points: 0.081083 ---
+Epoch 8--- Average Loss over last 10 data points: 0.100940 ---
+Epoch 8--- Average Loss over last 10 data points: 0.109682 ---
+Epoch 8--- Average Loss over last 10 data points: 0.080255 ---
+Epoch 8--- Average Loss over last 10 data points: 0.090466 ---
+Epoch 8--- Average Loss over last 10 data points: 0.102733 ---
+Epoch 8--- Average Loss over last 10 data points: 0.091237 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085250 ---
+Epoch 8--- Average Loss over last 10 data points: 0.094701 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085019 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073774 ---
+Epoch 8--- Average Loss over last 10 data points: 0.101903 ---
+Epoch 8--- Average Loss over last 10 data points: 0.089914 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083364 ---
+Epoch 8--- Average Loss over last 10 data points: 0.078172 ---
+Epoch 8--- Average Loss over last 10 data points: 0.111333 ---
+Epoch 8--- Average Loss over last 10 data points: 0.078686 ---
+Epoch 8--- Average Loss over last 10 data points: 0.070357 ---
+Epoch 8--- Average Loss over last 10 data points: 0.072513 ---
+Epoch 8--- Average Loss over last 10 data points: 0.088288 ---
+Epoch 8--- Average Loss over last 10 data points: 0.091569 ---
+Epoch 8--- Average Loss over last 10 data points: 0.080585 ---
+Epoch 8--- Average Loss over last 10 data points: 0.096684 ---
+Epoch 8--- Average Loss over last 10 data points: 0.089801 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073419 ---
+Epoch 8--- Average Loss over last 10 data points: 0.080574 ---
+Epoch 8--- Average Loss over last 10 data points: 0.087005 ---
+Epoch 8--- Average Loss over last 10 data points: 0.089321 ---
+Epoch 8--- Average Loss over last 10 data points: 0.088437 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086500 ---
+Epoch 8--- Average Loss over last 10 data points: 0.112218 ---
+Epoch 8--- Average Loss over last 10 data points: 0.070499 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077032 ---
+Epoch 8--- Average Loss over last 10 data points: 0.094683 ---
+Epoch 8--- Average Loss over last 10 data points: 0.075519 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073216 ---
+Epoch 8--- Average Loss over last 10 data points: 0.066607 ---
+Epoch 8--- Average Loss over last 10 data points: 0.081872 ---
+Epoch 8--- Average Loss over last 10 data points: 0.068622 ---
+Epoch 8--- Average Loss over last 10 data points: 0.079385 ---
+Epoch 8--- Average Loss over last 10 data points: 0.088672 ---
+Epoch 8--- Average Loss over last 10 data points: 0.084949 ---
+Epoch 8--- Average Loss over last 10 data points: 0.069035 ---
+Epoch 8--- Average Loss over last 10 data points: 0.097427 ---
+Epoch 8--- Average Loss over last 10 data points: 0.108647 ---
+Epoch 8--- Average Loss over last 10 data points: 0.079304 ---
+Epoch 8--- Average Loss over last 10 data points: 0.092788 ---
+Epoch 8--- Average Loss over last 10 data points: 0.072160 ---
+Epoch 8--- Average Loss over last 10 data points: 0.114257 ---
+Epoch 8--- Average Loss over last 10 data points: 0.103211 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085919 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077820 ---
+Epoch 8--- Average Loss over last 10 data points: 0.069097 ---
+Epoch 8--- Average Loss over last 10 data points: 0.086783 ---
+Epoch 8--- Average Loss over last 10 data points: 0.078127 ---
+Epoch 8--- Average Loss over last 10 data points: 0.076124 ---
+Epoch 8--- Average Loss over last 10 data points: 0.069780 ---
+Epoch 8--- Average Loss over last 10 data points: 0.090782 ---
+Epoch 8--- Average Loss over last 10 data points: 0.100248 ---
+Epoch 8--- Average Loss over last 10 data points: 0.082069 ---
+Epoch 8--- Average Loss over last 10 data points: 0.100808 ---
+Epoch 8--- Average Loss over last 10 data points: 0.091385 ---
+Epoch 8--- Average Loss over last 10 data points: 0.110664 ---
+Epoch 8--- Average Loss over last 10 data points: 0.074607 ---
+Epoch 8--- Average Loss over last 10 data points: 0.108393 ---
+Epoch 8--- Average Loss over last 10 data points: 0.096916 ---
+Epoch 8--- Average Loss over last 10 data points: 0.081671 ---
+Epoch 8--- Average Loss over last 10 data points: 0.091328 ---
+Epoch 8--- Average Loss over last 10 data points: 0.095650 ---
+Epoch 8--- Average Loss over last 10 data points: 0.084645 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077945 ---
+Epoch 8--- Average Loss over last 10 data points: 0.079339 ---
+Epoch 8--- Average Loss over last 10 data points: 0.075247 ---
+Epoch 8--- Average Loss over last 10 data points: 0.088369 ---
+Epoch 8--- Average Loss over last 10 data points: 0.093194 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083586 ---
+Epoch 8--- Average Loss over last 10 data points: 0.109499 ---
+Epoch 8--- Average Loss over last 10 data points: 0.073055 ---
+Epoch 8--- Average Loss over last 10 data points: 0.099852 ---
+Epoch 8--- Average Loss over last 10 data points: 0.083836 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085989 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077081 ---
+Epoch 8--- Average Loss over last 10 data points: 0.074223 ---
+Epoch 8--- Average Loss over last 10 data points: 0.085853 ---
+Epoch 8--- Average Loss over last 10 data points: 0.095893 ---
+Epoch 8--- Average Loss over last 10 data points: 0.077934 ---
+Epoch 8--- Average Loss over last 10 data points: 0.071207 ---
+Epoch 8--- Average Loss over last 10 data points: 0.092025 ---
+Epoch 8--- Average Loss over last 10 data points: 0.087751 ---
+Epoch 8--- Average Loss over last 10 data points: 0.087127 ---
+Epoch 8--- Average Loss over last 10 data points: 0.072522 ---
+Epoch 8/10, Average Training Loss: 0.086618
+Params per timestep: 55
+Validation RMSE - Y: 0.096413, Z: 0.158374, Avg: 0.127394
+Input layer weights: Parameter containing:
+tensor([[ 2.2859],
+        [ 2.9867],
+        [-0.0943],
+        [ 2.7040],
+        [-2.4840],
+        [ 3.2247],
+        [-2.4224],
+        [-3.0773],
+        [ 0.3443],
+        [-2.4006],
+        [ 2.4244],
+        [ 2.5878],
+        [ 2.9232],
+        [ 2.6481],
+        [ 2.5060],
+        [ 1.7844],
+        [-0.8704],
+        [-1.5034],
+        [ 0.3826],
+        [-0.8671],
+        [-1.8245],
+        [ 1.5409],
+        [-2.1392],
+        [-2.3533],
+        [ 2.1813],
+        [ 0.2486],
+        [ 1.8068],
+        [-2.2504],
+        [ 3.2209],
+        [ 1.0672],
+        [ 0.9435],
+        [-1.8673],
+        [-1.8608],
+        [ 0.1026],
+        [ 1.6003],
+        [ 1.7344],
+        [-2.6003],
+        [ 2.8188],
+        [ 2.0334],
+        [-2.3973],
+        [-0.6065],
+        [-1.6300],
+        [ 1.6497],
+        [ 0.9874],
+        [ 2.8371],
+        [ 2.2091],
+        [ 1.5778],
+        [-2.3332],
+        [ 1.7073],
+        [ 3.2340],
+        [ 0.9871],
+        [ 2.4592],
+        [ 2.1553],
+        [ 2.4602],
+        [ 1.8061]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 3.2611e-01,  2.2399e-01,  1.0552e+00,  1.4127e+00,  3.5693e-01,
+        -1.9279e-01, -6.1335e-01,  8.2015e-01, -6.1506e-01, -6.2440e-01,
+         1.6749e-01,  3.9877e-01,  1.6593e+00,  1.1988e+00, -1.0407e+00,
+        -3.5211e-01,  4.8923e-01,  1.0622e+00,  1.3543e+00, -1.2720e+00,
+        -6.7628e-02,  8.8965e-01,  1.1078e+00, -9.0154e-01, -1.9357e+00,
+        -7.4006e-01,  1.7597e-01,  1.4525e+00,  4.9960e-04, -6.7648e-01,
+        -4.4581e-01, -8.1043e-01, -4.5852e-01, -8.2093e-01, -1.1699e+00,
+        -6.0454e-01,  4.6075e-01,  5.4928e-01, -2.0806e-01, -1.3656e+00,
+        -7.6255e-01, -1.6625e+00, -2.3916e-01,  4.2407e-01, -1.3710e+00,
+         1.0946e+00,  4.4558e-01, -7.8479e-03, -2.0376e-01,  1.3376e+00,
+         6.2980e-01,  7.8346e-01, -2.9042e-01, -5.8002e-01,  4.2638e-01],
+       requires_grad=True)
+Epoch 9--- Average Loss over last 10 data points: 0.077565 ---
+Epoch 9--- Average Loss over last 10 data points: 0.092393 ---
+Epoch 9--- Average Loss over last 10 data points: 0.080623 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083509 ---
+Epoch 9--- Average Loss over last 10 data points: 0.076703 ---
+Epoch 9--- Average Loss over last 10 data points: 0.093781 ---
+Epoch 9--- Average Loss over last 10 data points: 0.062466 ---
+Epoch 9--- Average Loss over last 10 data points: 0.075346 ---
+Epoch 9--- Average Loss over last 10 data points: 0.076982 ---
+Epoch 9--- Average Loss over last 10 data points: 0.108894 ---
+Epoch 9--- Average Loss over last 10 data points: 0.091324 ---
+Epoch 9--- Average Loss over last 10 data points: 0.069636 ---
+Epoch 9--- Average Loss over last 10 data points: 0.075832 ---
+Epoch 9--- Average Loss over last 10 data points: 0.057638 ---
+Epoch 9--- Average Loss over last 10 data points: 0.067781 ---
+Epoch 9--- Average Loss over last 10 data points: 0.097404 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072331 ---
+Epoch 9--- Average Loss over last 10 data points: 0.093861 ---
+Epoch 9--- Average Loss over last 10 data points: 0.086945 ---
+Epoch 9--- Average Loss over last 10 data points: 0.089575 ---
+Epoch 9--- Average Loss over last 10 data points: 0.095767 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074375 ---
+Epoch 9--- Average Loss over last 10 data points: 0.082716 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074529 ---
+Epoch 9--- Average Loss over last 10 data points: 0.073284 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072273 ---
+Epoch 9--- Average Loss over last 10 data points: 0.084494 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083180 ---
+Epoch 9--- Average Loss over last 10 data points: 0.094741 ---
+Epoch 9--- Average Loss over last 10 data points: 0.073518 ---
+Epoch 9--- Average Loss over last 10 data points: 0.069133 ---
+Epoch 9--- Average Loss over last 10 data points: 0.092390 ---
+Epoch 9--- Average Loss over last 10 data points: 0.086424 ---
+Epoch 9--- Average Loss over last 10 data points: 0.105504 ---
+Epoch 9--- Average Loss over last 10 data points: 0.086013 ---
+Epoch 9--- Average Loss over last 10 data points: 0.087337 ---
+Epoch 9--- Average Loss over last 10 data points: 0.097924 ---
+Epoch 9--- Average Loss over last 10 data points: 0.066063 ---
+Epoch 9--- Average Loss over last 10 data points: 0.085587 ---
+Epoch 9--- Average Loss over last 10 data points: 0.084474 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078567 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074617 ---
+Epoch 9--- Average Loss over last 10 data points: 0.075971 ---
+Epoch 9--- Average Loss over last 10 data points: 0.080992 ---
+Epoch 9--- Average Loss over last 10 data points: 0.100290 ---
+Epoch 9--- Average Loss over last 10 data points: 0.081908 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083948 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083003 ---
+Epoch 9--- Average Loss over last 10 data points: 0.098966 ---
+Epoch 9--- Average Loss over last 10 data points: 0.103143 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077075 ---
+Epoch 9--- Average Loss over last 10 data points: 0.085135 ---
+Epoch 9--- Average Loss over last 10 data points: 0.099386 ---
+Epoch 9--- Average Loss over last 10 data points: 0.089764 ---
+Epoch 9--- Average Loss over last 10 data points: 0.082663 ---
+Epoch 9--- Average Loss over last 10 data points: 0.088391 ---
+Epoch 9--- Average Loss over last 10 data points: 0.079203 ---
+Epoch 9--- Average Loss over last 10 data points: 0.068588 ---
+Epoch 9--- Average Loss over last 10 data points: 0.093077 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083974 ---
+Epoch 9--- Average Loss over last 10 data points: 0.073149 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077271 ---
+Epoch 9--- Average Loss over last 10 data points: 0.098666 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077249 ---
+Epoch 9--- Average Loss over last 10 data points: 0.065746 ---
+Epoch 9--- Average Loss over last 10 data points: 0.070179 ---
+Epoch 9--- Average Loss over last 10 data points: 0.080200 ---
+Epoch 9--- Average Loss over last 10 data points: 0.084111 ---
+Epoch 9--- Average Loss over last 10 data points: 0.079408 ---
+Epoch 9--- Average Loss over last 10 data points: 0.089113 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077827 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074452 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072766 ---
+Epoch 9--- Average Loss over last 10 data points: 0.079979 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078924 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078629 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078863 ---
+Epoch 9--- Average Loss over last 10 data points: 0.101390 ---
+Epoch 9--- Average Loss over last 10 data points: 0.069466 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072666 ---
+Epoch 9--- Average Loss over last 10 data points: 0.090865 ---
+Epoch 9--- Average Loss over last 10 data points: 0.069992 ---
+Epoch 9--- Average Loss over last 10 data points: 0.071615 ---
+Epoch 9--- Average Loss over last 10 data points: 0.060498 ---
+Epoch 9--- Average Loss over last 10 data points: 0.079114 ---
+Epoch 9--- Average Loss over last 10 data points: 0.065156 ---
+Epoch 9--- Average Loss over last 10 data points: 0.075497 ---
+Epoch 9--- Average Loss over last 10 data points: 0.084815 ---
+Epoch 9--- Average Loss over last 10 data points: 0.076430 ---
+Epoch 9--- Average Loss over last 10 data points: 0.066826 ---
+Epoch 9--- Average Loss over last 10 data points: 0.089410 ---
+Epoch 9--- Average Loss over last 10 data points: 0.096009 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077390 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083742 ---
+Epoch 9--- Average Loss over last 10 data points: 0.064810 ---
+Epoch 9--- Average Loss over last 10 data points: 0.105028 ---
+Epoch 9--- Average Loss over last 10 data points: 0.095726 ---
+Epoch 9--- Average Loss over last 10 data points: 0.080822 ---
+Epoch 9--- Average Loss over last 10 data points: 0.073562 ---
+Epoch 9--- Average Loss over last 10 data points: 0.062959 ---
+Epoch 9--- Average Loss over last 10 data points: 0.077744 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072333 ---
+Epoch 9--- Average Loss over last 10 data points: 0.067451 ---
+Epoch 9--- Average Loss over last 10 data points: 0.067093 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083158 ---
+Epoch 9--- Average Loss over last 10 data points: 0.089191 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074487 ---
+Epoch 9--- Average Loss over last 10 data points: 0.097082 ---
+Epoch 9--- Average Loss over last 10 data points: 0.082644 ---
+Epoch 9--- Average Loss over last 10 data points: 0.099277 ---
+Epoch 9--- Average Loss over last 10 data points: 0.065793 ---
+Epoch 9--- Average Loss over last 10 data points: 0.096440 ---
+Epoch 9--- Average Loss over last 10 data points: 0.090586 ---
+Epoch 9--- Average Loss over last 10 data points: 0.072632 ---
+Epoch 9--- Average Loss over last 10 data points: 0.088710 ---
+Epoch 9--- Average Loss over last 10 data points: 0.092282 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078863 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074049 ---
+Epoch 9--- Average Loss over last 10 data points: 0.074631 ---
+Epoch 9--- Average Loss over last 10 data points: 0.071386 ---
+Epoch 9--- Average Loss over last 10 data points: 0.081993 ---
+Epoch 9--- Average Loss over last 10 data points: 0.087294 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078166 ---
+Epoch 9--- Average Loss over last 10 data points: 0.102465 ---
+Epoch 9--- Average Loss over last 10 data points: 0.070042 ---
+Epoch 9--- Average Loss over last 10 data points: 0.091737 ---
+Epoch 9--- Average Loss over last 10 data points: 0.076953 ---
+Epoch 9--- Average Loss over last 10 data points: 0.078194 ---
+Epoch 9--- Average Loss over last 10 data points: 0.066941 ---
+Epoch 9--- Average Loss over last 10 data points: 0.066638 ---
+Epoch 9--- Average Loss over last 10 data points: 0.080627 ---
+Epoch 9--- Average Loss over last 10 data points: 0.088077 ---
+Epoch 9--- Average Loss over last 10 data points: 0.071397 ---
+Epoch 9--- Average Loss over last 10 data points: 0.067674 ---
+Epoch 9--- Average Loss over last 10 data points: 0.083089 ---
+Epoch 9--- Average Loss over last 10 data points: 0.084940 ---
+Epoch 9--- Average Loss over last 10 data points: 0.081368 ---
+Epoch 9--- Average Loss over last 10 data points: 0.066540 ---
+Epoch 9/10, Average Training Loss: 0.081184
+Params per timestep: 55
+Validation RMSE - Y: 0.098480, Z: 0.172364, Avg: 0.135422
+Input layer weights: Parameter containing:
+tensor([[ 2.3326],
+        [ 2.9865],
+        [-0.0286],
+        [ 2.7291],
+        [-2.4607],
+        [ 3.3108],
+        [-2.4360],
+        [-3.0630],
+        [ 0.3212],
+        [-2.3546],
+        [ 2.4758],
+        [ 2.6203],
+        [ 2.9621],
+        [ 2.6780],
+        [ 2.5860],
+        [ 1.7618],
+        [-0.8639],
+        [-1.5608],
+        [ 0.3687],
+        [-0.8313],
+        [-1.7986],
+        [ 1.5512],
+        [-2.1193],
+        [-2.3788],
+        [ 2.1399],
+        [ 0.2501],
+        [ 1.9184],
+        [-2.2492],
+        [ 3.2279],
+        [ 1.1002],
+        [ 0.9975],
+        [-1.8934],
+        [-1.9044],
+        [ 0.1005],
+        [ 1.6126],
+        [ 1.7399],
+        [-2.6598],
+        [ 2.7784],
+        [ 2.0501],
+        [-2.5125],
+        [-0.5980],
+        [-1.6309],
+        [ 1.6579],
+        [ 1.0260],
+        [ 2.8846],
+        [ 2.2401],
+        [ 1.5478],
+        [-2.3093],
+        [ 1.6634],
+        [ 3.2295],
+        [ 0.9587],
+        [ 2.4209],
+        [ 2.1890],
+        [ 2.4510],
+        [ 1.8217]], requires_grad=True)
+Input layer bias: Parameter containing:
+tensor([ 0.3779,  0.2204,  0.9721,  1.4254,  0.2803, -0.1859, -0.7272,  0.8778,
+        -0.6447, -0.5909,  0.1855,  0.4200,  1.6601,  1.1645, -1.0994, -0.3602,
+         0.4894,  1.0342,  1.3094, -1.3233, -0.0346,  0.8919,  1.1040, -0.9123,
+        -2.0064, -0.6791,  0.2197,  1.5099, -0.0646, -0.6493, -0.4175, -0.9403,
+        -0.4555, -0.8204, -1.0943, -0.5842,  0.4519,  0.5986, -0.2239, -1.4687,
+        -0.7399, -1.6791, -0.2577,  0.4777, -1.3444,  1.0721,  0.4610, -0.0140,
+        -0.2890,  1.3497,  0.6605,  0.7829, -0.2708, -0.6176,  0.4636],
+       requires_grad=True)
+Epoch 10--- Average Loss over last 10 data points: 0.073314 ---
+Epoch 10--- Average Loss over last 10 data points: 0.087713 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071883 ---
+Epoch 10--- Average Loss over last 10 data points: 0.081523 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071761 ---
+Epoch 10--- Average Loss over last 10 data points: 0.085792 ---
+Epoch 10--- Average Loss over last 10 data points: 0.054245 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073568 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073006 ---
+Epoch 10--- Average Loss over last 10 data points: 0.094433 ---
+Epoch 10--- Average Loss over last 10 data points: 0.087674 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068322 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073435 ---
+Epoch 10--- Average Loss over last 10 data points: 0.054996 ---
+Epoch 10--- Average Loss over last 10 data points: 0.064326 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091587 ---
+Epoch 10--- Average Loss over last 10 data points: 0.067408 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091046 ---
+Epoch 10--- Average Loss over last 10 data points: 0.082792 ---
+Epoch 10--- Average Loss over last 10 data points: 0.080227 ---
+Epoch 10--- Average Loss over last 10 data points: 0.090792 ---
+Epoch 10--- Average Loss over last 10 data points: 0.067423 ---
+Epoch 10--- Average Loss over last 10 data points: 0.075990 ---
+Epoch 10--- Average Loss over last 10 data points: 0.069400 ---
+Epoch 10--- Average Loss over last 10 data points: 0.067738 ---
+Epoch 10--- Average Loss over last 10 data points: 0.064463 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078801 ---
+Epoch 10--- Average Loss over last 10 data points: 0.075830 ---
+Epoch 10--- Average Loss over last 10 data points: 0.089225 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070463 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068743 ---
+Epoch 10--- Average Loss over last 10 data points: 0.086333 ---
+Epoch 10--- Average Loss over last 10 data points: 0.085718 ---
+Epoch 10--- Average Loss over last 10 data points: 0.097877 ---
+Epoch 10--- Average Loss over last 10 data points: 0.077023 ---
+Epoch 10--- Average Loss over last 10 data points: 0.082590 ---
+Epoch 10--- Average Loss over last 10 data points: 0.089713 ---
+Epoch 10--- Average Loss over last 10 data points: 0.060922 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078438 ---
+Epoch 10--- Average Loss over last 10 data points: 0.080548 ---
+Epoch 10--- Average Loss over last 10 data points: 0.075129 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071305 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070841 ---
+Epoch 10--- Average Loss over last 10 data points: 0.081171 ---
+Epoch 10--- Average Loss over last 10 data points: 0.096126 ---
+Epoch 10--- Average Loss over last 10 data points: 0.075879 ---
+Epoch 10--- Average Loss over last 10 data points: 0.081574 ---
+Epoch 10--- Average Loss over last 10 data points: 0.072945 ---
+Epoch 10--- Average Loss over last 10 data points: 0.093684 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091749 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068842 ---
+Epoch 10--- Average Loss over last 10 data points: 0.077655 ---
+Epoch 10--- Average Loss over last 10 data points: 0.092909 ---
+Epoch 10--- Average Loss over last 10 data points: 0.083859 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078439 ---
+Epoch 10--- Average Loss over last 10 data points: 0.083584 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074933 ---
+Epoch 10--- Average Loss over last 10 data points: 0.065449 ---
+Epoch 10--- Average Loss over last 10 data points: 0.081286 ---
+Epoch 10--- Average Loss over last 10 data points: 0.079897 ---
+Epoch 10--- Average Loss over last 10 data points: 0.069463 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071542 ---
+Epoch 10--- Average Loss over last 10 data points: 0.085975 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068861 ---
+Epoch 10--- Average Loss over last 10 data points: 0.066280 ---
+Epoch 10--- Average Loss over last 10 data points: 0.067012 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074737 ---
+Epoch 10--- Average Loss over last 10 data points: 0.079410 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073650 ---
+Epoch 10--- Average Loss over last 10 data points: 0.081037 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073944 ---
+Epoch 10--- Average Loss over last 10 data points: 0.069057 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070290 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074045 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074426 ---
+Epoch 10--- Average Loss over last 10 data points: 0.072106 ---
+Epoch 10--- Average Loss over last 10 data points: 0.080700 ---
+Epoch 10--- Average Loss over last 10 data points: 0.090171 ---
+Epoch 10--- Average Loss over last 10 data points: 0.065106 ---
+Epoch 10--- Average Loss over last 10 data points: 0.069053 ---
+Epoch 10--- Average Loss over last 10 data points: 0.084142 ---
+Epoch 10--- Average Loss over last 10 data points: 0.067454 ---
+Epoch 10--- Average Loss over last 10 data points: 0.066749 ---
+Epoch 10--- Average Loss over last 10 data points: 0.055056 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074057 ---
+Epoch 10--- Average Loss over last 10 data points: 0.063174 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068503 ---
+Epoch 10--- Average Loss over last 10 data points: 0.084075 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074117 ---
+Epoch 10--- Average Loss over last 10 data points: 0.061098 ---
+Epoch 10--- Average Loss over last 10 data points: 0.086230 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091513 ---
+Epoch 10--- Average Loss over last 10 data points: 0.075106 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078257 ---
+Epoch 10--- Average Loss over last 10 data points: 0.059061 ---
+Epoch 10--- Average Loss over last 10 data points: 0.097887 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091262 ---
+Epoch 10--- Average Loss over last 10 data points: 0.080083 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068177 ---
+Epoch 10--- Average Loss over last 10 data points: 0.059172 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073684 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068148 ---
+Epoch 10--- Average Loss over last 10 data points: 0.060702 ---
+Epoch 10--- Average Loss over last 10 data points: 0.062082 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078941 ---
+Epoch 10--- Average Loss over last 10 data points: 0.079649 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070044 ---
+Epoch 10--- Average Loss over last 10 data points: 0.089033 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074002 ---
+Epoch 10--- Average Loss over last 10 data points: 0.091546 ---
+Epoch 10--- Average Loss over last 10 data points: 0.063296 ---
+Epoch 10--- Average Loss over last 10 data points: 0.087995 ---
+Epoch 10--- Average Loss over last 10 data points: 0.082954 ---
+Epoch 10--- Average Loss over last 10 data points: 0.065980 ---
+Epoch 10--- Average Loss over last 10 data points: 0.082818 ---
+Epoch 10--- Average Loss over last 10 data points: 0.087086 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070433 ---
+Epoch 10--- Average Loss over last 10 data points: 0.072219 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071965 ---
+Epoch 10--- Average Loss over last 10 data points: 0.064342 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078261 ---
+Epoch 10--- Average Loss over last 10 data points: 0.078803 ---
+Epoch 10--- Average Loss over last 10 data points: 0.071010 ---
+Epoch 10--- Average Loss over last 10 data points: 0.090507 ---
+Epoch 10--- Average Loss over last 10 data points: 0.068544 ---
+Epoch 10--- Average Loss over last 10 data points: 0.082199 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070061 ---
+Epoch 10--- Average Loss over last 10 data points: 0.070301 ---
+Epoch 10--- Average Loss over last 10 data points: 0.060509 ---
+Epoch 10--- Average Loss over last 10 data points: 0.057851 ---
+Epoch 10--- Average Loss over last 10 data points: 0.077243 ---
+Epoch 10--- Average Loss over last 10 data points: 0.079975 ---
+Epoch 10--- Average Loss over last 10 data points: 0.064338 ---
+Epoch 10--- Average Loss over last 10 data points: 0.059573 ---
+Epoch 10--- Average Loss over last 10 data points: 0.073971 ---
+Epoch 10--- Average Loss over last 10 data points: 0.079634 ---
+Epoch 10--- Average Loss over last 10 data points: 0.074497 ---
+Epoch 10--- Average Loss over last 10 data points: 0.063943 ---
+Epoch 10/10, Average Training Loss: 0.075710
+Params per timestep: 55
+Validation RMSE - Y: 0.099488, Z: 0.190314, Avg: 0.144901
+
+✅ Training complete!

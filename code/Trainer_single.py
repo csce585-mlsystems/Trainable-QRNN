@@ -103,7 +103,7 @@ BATCH_SIZE = 1
 LEARNING_RATE = .007
 
 # --- 2. Data Loading and Preparation ---
-print("🚀 Starting data preparation...")
+print("Starting data preparation...")
 if torch.cuda.is_available():
     device = torch.device("cpu") #Using CPU is not faster for the classical layers yet
 else:
@@ -210,7 +210,7 @@ for epoch in range(0,EPOCHS):
         #losses.append(np.sqrt(loss.item()))
         
         if i % 100 == 0:
-            torch.save(model.state_dict(), f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}.pth')
+            torch.save(model.state_dict(), f'./checkpoints/latest_spsa/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}.pth')
         
         
         end_time = time.time()
@@ -228,7 +228,7 @@ for epoch in range(0,EPOCHS):
         
     avg_epoch_loss = epoch_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{EPOCHS}, Average Training Loss: {avg_epoch_loss:.6f}")
-    last_checkpoint_path = f'./checkpoints/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth'
+    last_checkpoint_path = f'./checkpoints/latest_spsa/lorenz_{N_QUBITS}_{DIFF_METHOD}_SIMPLE_{REPEAT_BLOCKS}_{SHOTS}_{epoch+1}_QRNN_{i}_LAST.pth'
     torch.save(model.state_dict(), last_checkpoint_path)
     #Run validation after each epoch
     #Instantiate new model with full sequence length for evaluation

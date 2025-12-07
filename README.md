@@ -56,7 +56,6 @@ We build upon prior work in QRNNs (Reference 1) and VQC optimization methods to 
 # < The following is only applicable for the final project submission >  
 
 ## Dependencies  
-### Include all dependencies required to run the project. Example:  
 - Python 3.11  
 - Torch
 - Qiskit
@@ -65,16 +64,12 @@ We build upon prior work in QRNNs (Reference 1) and VQC optimization methods to 
 - Numpy 
 - Scikit-learn
 
-For Python users: Please use [uv](https://docs.astral.sh/uv/) as your package manager instead of `pip`. Your repo must include both the `uv.lock` and `pyproject.toml` files.  
 
 ## Directory Structure  
-Example:  
 ```
+|- code (mandatory)
+|   |- Trainer_single.py
 |- data (mandatory)
-|- src (mandatory)
-|   |- model.py
-|   |- example.py
-|- train.py
 |- run.py (mandatory)
 |- result.py (mandatory)
 ```
@@ -85,25 +80,11 @@ Example:
 - Result files such as `.csv`, `.jpg`, or raw data must be saved in the `data` directory.  
 
 ## How to Run  
-- Include all instructions (`commands`, `scripts`, etc.) needed to run your code.  
-- Provide all other details a computer science student would need to reproduce your results.  
+1. Install the required packages with ```uv sync```
+2. Run ```uv run python run.py -V``` for at least one epoch.
+3. (OPTIONAL )Evaluate the model on the test dataset using "./code/eval.ipynb". Make sure to set the filename to the name of the final model checkpoint from the "checkpoints" folder.
+4. Visualize the losses with "./code/visual.ipynb" or using ```result.py```.
 
-Example:  
-- Download the [DATASET](dataset_link)
-  ```bash
-  wget <URL_of_file>
-  ```
-
-- To train the model, run:  
-  ```bash
-  python train.py
-  ```  
-- To plot the results, run:  
-  ```bash
-  python result.py
-  ```  
 
 ## Demo  
-- All projects must include video(s) demonstrating your project.  
-- Please use annotations/explanations to clarify what is happening in the demo.  
----
+https://youtu.be/MDxVlbfD16k

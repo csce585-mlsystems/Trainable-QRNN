@@ -89,7 +89,7 @@ SPSA_SAMPLES = 2
 SPSA_EPS = .1
 GPU = False
 DIFF_METHOD = "spsa-w"
-SEED = 1929#np.random.randint(1,10000)
+SEED = 1920#np.random.randint(1,10000)
 
 LOAD_CHECKPOINT = False
 checkpoint_path = "./checkpoints/lorenz_8_finite-diff-w_SIMPLE_1_1024_2_QRNN_1385_LAST.pth"

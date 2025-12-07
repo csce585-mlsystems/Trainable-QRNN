@@ -14,8 +14,8 @@ plt.plot(losses)
 plt.xlabel('Batch')
 plt.ylabel('RMSE')
 plt.title('Train RMSE with SPSA Gradient')
-#plt.savefig('../results/finite_r1_lr001_oct22/train_rmse_fdsa_diff_r1.pdf')
-plt.show()
+plt.savefig('./data/train_rmse_spsa_diff_r1.pdf')
+#plt.show()
 
 # %%
 #Plot validation loss
@@ -27,8 +27,30 @@ plt.xlabel('Epoch')
 plt.xticks(range(0, len(val_losses[:,2]), 1))
 plt.ylabel('Validation RMSE')
 plt.title('Validation RMSE with SPSA Gradient')
-#plt.savefig('../results/finite_r1_lr001_oct22/val_rmse_fdsa_diff_r1.pdf')
-plt.show()
+plt.savefig('./data/val_rmse_spsa_diff_r1.pdf')
+#plt.show()
+
+losses = np.load('./results/server/fdsa_gpu_losses_combined.npy')
+
+plt.figure()
+plt.plot(losses)
+plt.xlabel('Batch')
+plt.ylabel('RMSE')
+plt.title('Train RMSE with FDSA Gradient')
+plt.savefig('./data/train_rmse_fdsa_diff_r1.pdf')
+#plt.show()
+
+# %%
+#Plot validation loss
+plt.figure()
+val_losses = np.load('./results/server/val_losses.npy')
+#val_losses = np.load('../results/server/val_losses.npy')
+plt.plot(val_losses[:,2])
+plt.xlabel('Epoch')
+plt.xticks(range(0, len(val_losses[:,2]), 1))
+plt.ylabel('Validation RMSE')
+plt.title('Validation RMSE with FDSA Gradient')
+plt.savefig('./data/val_rmse_fdsa_diff_r1.pdf')
 
 # %%
 val_losses
@@ -43,13 +65,14 @@ plt.figure()
 plt.bar(['SPSA (CPU)','FDSA (GPU)','FDSA (CPU)'], times, color=['blue', 'orange', 'green'])
 plt.ylabel('Time (s)')
 plt.title('Time per Weight Update')
-plt.show()
+plt.savefig('./data/time_per_weight_update_comparison.pdf')
 
 hours_per_epoch = [1,8,14.5]
 plt.figure()
 plt.bar(['SPSA (CPU)','FDSA (GPU)','FDSA (CPU)'], hours_per_epoch, color=['blue', 'orange', 'green'])
 plt.ylabel('Time (hours)')
 plt.title('Projected time per Epoch (1384 Sequences)')
-plt.show()
+#plt.show()
+plt.savefig('./data/time_per_epoch_comparison.pdf')
 
 

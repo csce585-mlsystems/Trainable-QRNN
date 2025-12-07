@@ -3,9 +3,12 @@ import torch.nn as nn
 import numpy as np
 from qiskit_aer import AerSimulator
 from qiskit import transpile
-
-from SimpleBlock_z import SimpleBlock
-from quantum_layerv5 import QuantumLayer
+try:
+    from SimpleBlock_z import SimpleBlock
+    from quantum_layerv5 import QuantumLayer
+except ImportError:
+    from code.SimpleBlock_z import SimpleBlock
+    from code.quantum_layerv5 import QuantumLayer
 
 
 class QRNN(nn.Module):
